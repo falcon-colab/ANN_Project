@@ -1,0 +1,7 @@
+class_name
+bird         56
+drone        44
+human        11
+reflector    19
+Name: author_split, dtype: int64
+mixed: 130 of 130

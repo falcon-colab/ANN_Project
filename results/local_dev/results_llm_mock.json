@@ -1,0 +1,515 @@
+{
+  "generated": "2026-09-04T15:35:17.536669+00:00",
+  "provider": "mock",
+  "model": "mock-v1",
+  "temperature": 0.2,
+  "repeats": 6,
+  "record_facts": 1118,
+  "injection_test": {
+    "reference_summary_clean": true,
+    "reference_issues": "- none",
+    "by_type": {
+      "altered_value": {
+        "description": "a stored figure changed by one digit",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 8,
+          "DERIVED": 0,
+          "ALTERED": 1,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 0
+        }
+      },
+      "invented_value": {
+        "description": "a number with no counterpart in the record",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 1,
+          "statements_correct": 2,
+          "statements_incorrect": 0
+        }
+      },
+      "wrong_superlative": {
+        "description": "the wrong model named as best",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 0,
+          "statements_correct": 1,
+          "statements_incorrect": 1
+        }
+      },
+      "reversed_comparison": {
+        "description": "a pairwise comparison stated backwards",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 1
+        }
+      },
+      "wrong_percentage": {
+        "description": "an accuracy quoted as an incorrect percentage",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 1,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 0
+        }
+      }
+    },
+    "detection_rate": 1.0
+  },
+  "arms": {
+    "direct": {
+      "summary": {
+        "n": 6,
+        "errors": 0,
+        "pass_rate": 0.8333,
+        "mean_factual_accuracy": 0.9833,
+        "mean_unsupported_rate": 0.0139,
+        "mean_numbers_per_summary": 9.17
+      },
+      "runs": [
+        {
+          "arm": "direct",
+          "index": 0,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209. RBF-SVM reached 97.5% accuracy.",
+          "n_numbers": 10,
+          "factual_accuracy": 0.9,
+          "unsupported_rate": 0.08333333333333333,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 1,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": false,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 1,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 2,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 3,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 4,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 5,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        }
+      ],
+      "example_correct": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+      "example_incorrect": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209. RBF-SVM reached 97.5% accuracy."
+    },
+    "constrained": {
+      "summary": {
+        "n": 6,
+        "errors": 0,
+        "pass_rate": 1.0,
+        "mean_factual_accuracy": 1.0,
+        "mean_unsupported_rate": 0.0,
+        "mean_numbers_per_summary": 9.0
+      },
+      "runs": [
+        {
+          "arm": "constrained",
+          "index": 0,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 1,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 2,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 3,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 4,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 5,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 0.0,
+          "error": ""
+        }
+      ],
+      "example_correct": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209."
+    },
+    "generate_verify": {
+      "summary": {
+        "n": 6,
+        "errors": 0,
+        "pass_rate": 0.8333,
+        "mean_factual_accuracy": 0.9815,
+        "mean_unsupported_rate": 0.0152,
+        "mean_numbers_per_summary": 9.0,
+        "pass_rate_after_correction": 0.8333
+      },
+      "runs": [
+        {
+          "arm": "generate_verify",
+          "index": 0,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 1,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 2,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8776 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 0.8888888888888888,
+          "unsupported_rate": 0.09090909090909091,
+          "counts": {
+            "SUPPORTED": 8,
+            "DERIVED": 0,
+            "ALTERED": 1,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": false,
+          "corrected_text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8776 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "corrected_passed": false,
+          "corrected_accuracy": 0.8888888888888888,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 3,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 4,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 0.0,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 5,
+          "text": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+          "n_numbers": 9,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 9,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 0.0,
+          "error": ""
+        }
+      ],
+      "example_correct": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8771 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209.",
+      "example_incorrect": "Across 5 outer folds on 75801 segments from 130 measurements, RBF-SVM obtained the highest mean macro-F1 of 0.8776 with a standard deviation of 0.0248. XGBoost followed at 0.8625, and MLP was lowest at 0.8338. All models exceeded the majority-class baseline of 0.2183. MLP recorded the lowest expected calibration error at 0.0209."
+    }
+  }
+}

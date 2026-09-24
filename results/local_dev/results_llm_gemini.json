@@ -1,0 +1,541 @@
+{
+  "generated": "2026-09-06T08:32:45.563622+00:00",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash",
+  "temperature": 0.2,
+  "repeats": 5,
+  "record": {
+    "task": "four-class micro-Doppler classification",
+    "n_segments": 75801,
+    "n_measurements": 130,
+    "n_outer_folds": 5,
+    "n_inner_folds": 5,
+    "majority_baseline_macro_f1": 0.2183,
+    "models": {
+      "svm": {
+        "model_name": "RBF-SVM",
+        "outer_fold_scores": [
+          0.8306,
+          0.8822,
+          0.9036,
+          0.8904,
+          0.8786
+        ],
+        "mean_macro_f1": 0.8771,
+        "std_macro_f1": 0.0248,
+        "accuracy": 0.9379,
+        "ece": 0.0281,
+        "brier_score": 0.1108,
+        "wall_seconds": 882.5
+      },
+      "rf": {
+        "model_name": "Random Forest",
+        "outer_fold_scores": [
+          0.7608,
+          0.8606,
+          0.8322,
+          0.8735,
+          0.8495
+        ],
+        "mean_macro_f1": 0.8353,
+        "std_macro_f1": 0.0396,
+        "accuracy": 0.9181,
+        "ece": 0.0213,
+        "brier_score": 0.1249,
+        "wall_seconds": 1380.2
+      },
+      "xgb": {
+        "model_name": "XGBoost",
+        "outer_fold_scores": [
+          0.7967,
+          0.9029,
+          0.8665,
+          0.8905,
+          0.8557
+        ],
+        "mean_macro_f1": 0.8625,
+        "std_macro_f1": 0.0369,
+        "accuracy": 0.93,
+        "ece": 0.0258,
+        "brier_score": 0.1091,
+        "wall_seconds": 161.4
+      },
+      "mlp": {
+        "model_name": "MLP",
+        "outer_fold_scores": [
+          0.781,
+          0.8748,
+          0.8282,
+          0.8429,
+          0.8423
+        ],
+        "mean_macro_f1": 0.8338,
+        "std_macro_f1": 0.0305,
+        "accuracy": 0.9137,
+        "ece": 0.0209,
+        "brier_score": 0.1276,
+        "wall_seconds": 6711.2,
+        "parameter_count": 3108
+      }
+    }
+  },
+  "injection_test": {
+    "reference_summary_clean": true,
+    "reference_issues": "- none",
+    "by_type": {
+      "altered_value": {
+        "description": "a stored figure changed by one digit",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 8,
+          "DERIVED": 0,
+          "ALTERED": 1,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 0,
+          "statements_unchecked": 0
+        }
+      },
+      "invented_value": {
+        "description": "a number with no counterpart in the record",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 1,
+          "statements_correct": 2,
+          "statements_incorrect": 0,
+          "statements_unchecked": 0
+        }
+      },
+      "wrong_superlative": {
+        "description": "the wrong model named as best",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 0,
+          "statements_correct": 1,
+          "statements_incorrect": 1,
+          "statements_unchecked": 0
+        }
+      },
+      "reversed_comparison": {
+        "description": "a pairwise comparison stated backwards",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 0,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 1,
+          "statements_unchecked": 0
+        }
+      },
+      "wrong_percentage": {
+        "description": "an accuracy quoted as an incorrect percentage",
+        "detected": true,
+        "counts": {
+          "SUPPORTED": 9,
+          "DERIVED": 0,
+          "ALTERED": 1,
+          "UNSUPPORTED": 0,
+          "statements_correct": 2,
+          "statements_incorrect": 0,
+          "statements_unchecked": 0
+        }
+      }
+    },
+    "detection_rate": 1.0
+  },
+  "arms": {
+    "direct": {
+      "summary": {
+        "n": 5,
+        "errors": 0,
+        "pass_rate": 1.0,
+        "mean_factual_accuracy": 1.0,
+        "mean_unsupported_rate": 0.0,
+        "mean_numbers_per_summary": 15.8
+      },
+      "runs": [
+        {
+          "arm": "direct",
+          "index": 0,
+          "text": "This study evaluated four machine learning models for four-class micro-Doppler radar target classification using nested $5\\times5$ measurement-grouped cross-validation on 75,801 segments from 130 measurements. All models significantly outperformed the majority baseline macro F1 of 0.2183. \n\nRBF-SVM achieved the highest classification performance with a mean macro F1-score of 0.8771 (\u00b10.0248) and 93.79% accuracy, followed closely by XGBoost (macro F1: 0.8625 \u00b1 0.0369; 93.00% accuracy). Notably, XGBoost was the most computationally efficient, requiring only 161.4 seconds of wall time compared to SVM's 882.5 seconds. Random Forest and MLP yielded comparable macro F1-scores (~0.835 and 0.8338, respectively), with MLP exhibiting the lowest expected calibration error (ECE = 0.0209). \n\nOverall, RBF-SVM provides the highest accuracy, while XGBoost offers an optimal trade-off between classification performance and computational speed.",
+          "n_numbers": 15,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 13,
+            "DERIVED": 2,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 3,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 40.28,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 1,
+          "text": "This study evaluated four machine learning models for four-class micro-Doppler radar target classification using 75,801 segments across 130 measurements, validated via nested $5 \\times 5$ measurement-grouped cross-validation. All models significantly outperformed the majority baseline (macro F1: 0.2183). \n\nThe RBF-SVM achieved the highest classification performance, yielding a mean macro F1-score of 0.8771 (\u00b10.0248) and 93.79% accuracy. XGBoost performed competitively with a macro F1 of 0.8625 (\u00b10.0369) and 93.00% accuracy, while demonstrating superior computational efficiency with a wall time of 161.4 seconds (compared to SVM's 882.5 seconds). Random Forest and MLP achieved lower macro F1-scores of 0.8353 and 0.8338, respectively, with MLP requiring the longest training time (6711.2 seconds). \n\nIn conclusion, RBF-SVM provides the highest classification accuracy, while XGBoost offers a highly efficient, competitive alternative.",
+          "n_numbers": 16,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 14,
+            "DERIVED": 2,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 2,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 13.59,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 2,
+          "text": "This study evaluated four machine learning models for four-class micro-Doppler radar target classification using 75,801 segments from 130 measurements. Using nested $5\\times5$ measurement-grouped cross-validation, all models significantly outperformed the majority baseline (macro $F_1$: 0.2183). \n\nThe RBF-SVM achieved the highest overall performance, yielding a mean macro $F_1$-score of 0.8771 ($\\pm$0.0248) and 93.79% accuracy. XGBoost performed comparably, achieving a macro $F_1$-score of 0.8625 ($\\pm$0.0369) and 93.00% accuracy, while demonstrating superior computational efficiency with the fastest training time (161.4 seconds) and the lowest Brier score (0.1091). Random Forest and MLP produced lower but competitive macro $F_1$-scores of 0.8353 and 0.8338, respectively, with MLP requiring the longest training time (6,711.2 seconds). \n\nThese results highlight RBF-SVM and XGBoost as highly effective and robust classifiers for micro-Doppler radar applications.",
+          "n_numbers": 15,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 13,
+            "DERIVED": 2,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 3,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 10.53,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 3,
+          "text": "This study evaluated four machine learning models for four-class micro-Doppler radar target classification using 75,801 segments from 130 measurements. Using nested $5 \\times 5$ measurement-grouped cross-validation, all models significantly outperformed the majority baseline (macro F1: 0.2183). \n\nThe RBF-SVM achieved the highest overall performance, yielding a mean macro F1-score of 0.8771 (\u00b10.0248) and 93.79% accuracy. XGBoost was highly competitive, achieving a macro F1-score of 0.8625 (\u00b10.0369) and 93.00% accuracy, while demonstrating superior computational efficiency with a wall time of 161.4 seconds\u2014significantly faster than SVM (882.5 s), Random Forest (1380.2 s, F1: 0.8353), and MLP (6711.2 s, F1: 0.8338). \n\nThese findings highlight RBF-SVM as the optimal choice for classification accuracy, and XGBoost as an exceptionally efficient alternative for resource-constrained micro-Doppler applications.",
+          "n_numbers": 17,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 15,
+            "DERIVED": 2,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 19.44,
+          "error": ""
+        },
+        {
+          "arm": "direct",
+          "index": 4,
+          "text": "In a four-class micro-Doppler radar target classification study utilizing 75,801 segments from 130 measurements, four machine learning models were evaluated using nested 5\u00d75 measurement-grouped cross-validation. All models significantly outperformed the majority baseline (macro $F_1$: 0.2183). \n\nThe RBF-SVM achieved the highest overall performance, yielding a mean macro $F_1$-score of 0.8771 (\u00b10.0248) and 93.79% accuracy. XGBoost performed comparably, achieving a macro $F_1$ of 0.8625 (\u00b10.0369) and 93.00% accuracy, while demonstrating superior computational efficiency with the shortest training time (161.4 seconds) and the lowest Brier score (0.1091). Random Forest and MLP underperformed relative to the other models, achieving macro $F_1$-scores of 0.8353 and 0.8338, respectively, with MLP requiring the longest training time (6711.2 seconds). \n\nThese findings suggest that RBF-SVM and XGBoost are the most effective candidates for robust and efficient micro-Doppler classification.",
+          "n_numbers": 16,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 14,
+            "DERIVED": 2,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 3,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 8.75,
+          "error": ""
+        }
+      ],
+      "example_correct": "This study evaluated four machine learning models for four-class micro-Doppler radar target classification using nested $5\\times5$ measurement-grouped cross-validation on 75,801 segments from 130 measurements. All models significantly outperformed the majority baseline macro F1 of 0.2183. \n\nRBF-SVM achieved the highest classification performance with a mean macro F1-score of 0.8771 (\u00b10.0248) and 93.79% accuracy, followed closely by XGBoost (macro F1: 0.8625 \u00b1 0.0369; 93.00% accuracy). Notably, XGBoost was the most computationally efficient, requiring only 161.4 seconds of wall time compared to SVM's 882.5 seconds. Random Forest and MLP yielded comparable macro F1-scores (~0.835 and 0.8338, respectively), with MLP exhibiting the lowest expected calibration error (ECE = 0.0209). \n\nOverall, RBF-SVM provides the highest accuracy, while XGBoost offers an optimal trade-off between classification performance and computational speed."
+    },
+    "constrained": {
+      "summary": {
+        "n": 5,
+        "errors": 0,
+        "pass_rate": 1.0,
+        "mean_factual_accuracy": 1.0,
+        "mean_unsupported_rate": 0.0,
+        "mean_numbers_per_summary": 30.4
+      },
+      "runs": [
+        {
+          "arm": "constrained",
+          "index": 2,
+          "text": "For a four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation was conducted with 5 outer folds and 5 inner folds. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall seconds of 882.5.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall seconds of 161.4.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall seconds of 1380.2.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall seconds of 6711.2.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 106.29,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 0,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, a nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183. \n\nThe evaluated models achieved the following results:\n* **RBF-SVM**: mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds.\n* **XGBoost**: mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds.\n* **Random Forest**: mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds.\n* **MLP** (3108 parameters): mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 17.65,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 1,
+          "text": "This study evaluates four-class micro-Doppler classification using 75801 segments and 130 measurements, evaluated via nested 5-by-5 cross-validation (5 outer and 5 inner folds). The majority baseline macro F1 is 0.2183.\n\nThe RBF-SVM model achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds. XGBoost achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds. Random Forest achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds. Finally, the MLP model (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 32,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 32,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 19.48,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 2,
+          "text": "For a four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall seconds of 882.5.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall seconds of 161.4.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall seconds of 1380.2.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall seconds of 6711.2.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 25.47,
+          "error": ""
+        },
+        {
+          "arm": "constrained",
+          "index": 3,
+          "text": "For a four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183.\n\nThe evaluated models achieved the following results:\n* **RBF-SVM**: mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds.\n* **XGBoost**: mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds.\n* **Random Forest**: mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds.\n* **MLP** (3108 parameters): mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": null,
+          "corrected_accuracy": null,
+          "seconds": 26.82,
+          "error": ""
+        }
+      ],
+      "example_correct": "For a four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation was conducted with 5 outer folds and 5 inner folds. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall seconds of 882.5.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall seconds of 161.4.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall seconds of 1380.2.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall seconds of 6711.2."
+    },
+    "generate_verify": {
+      "summary": {
+        "n": 5,
+        "errors": 0,
+        "pass_rate": 1.0,
+        "mean_factual_accuracy": 1.0,
+        "mean_unsupported_rate": 0.0,
+        "mean_numbers_per_summary": 30.8,
+        "pass_rate_after_correction": 1.0
+      },
+      "runs": [
+        {
+          "arm": "generate_verify",
+          "index": 0,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183. \n\nRBF-SVM achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds. \n\nRandom Forest achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds. \n\nXGBoost achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds. \n\nMLP, with 3108 parameters, achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 28.79,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 1,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, a nested 5-by-5 cross-validation (5 outer folds and 5 inner folds) was used. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 32,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 32,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 29.09,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 2,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, a nested 5-by-5 cross-validation (5 outer and 5 inner folds) was used. The majority baseline macro F1 is 0.2183.\n\nModel results are as follows:\n* **RBF-SVM**: mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds.\n* **XGBoost**: mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds.\n* **Random Forest**: mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds.\n* **MLP** (3108 parameters): mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 32,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 32,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 0
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 21.27,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 3,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, a nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall seconds of 882.5.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall seconds of 161.4.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall seconds of 1380.2.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall seconds of 6711.2.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 23.7,
+          "error": ""
+        },
+        {
+          "arm": "generate_verify",
+          "index": 4,
+          "text": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation with 5 outer and 5 inner folds was used. The majority baseline macro F1 is 0.2183.\n\n* **RBF-SVM** achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds.\n* **XGBoost** achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds.\n* **Random Forest** achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds.\n* **MLP** (3108 parameters) achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds.",
+          "n_numbers": 30,
+          "factual_accuracy": 1.0,
+          "unsupported_rate": 0.0,
+          "counts": {
+            "SUPPORTED": 30,
+            "DERIVED": 0,
+            "ALTERED": 0,
+            "UNSUPPORTED": 0,
+            "statements_correct": 0,
+            "statements_incorrect": 0,
+            "statements_unchecked": 1
+          },
+          "passed": true,
+          "corrected_text": "",
+          "corrected_passed": true,
+          "corrected_accuracy": 1.0,
+          "seconds": 15.35,
+          "error": ""
+        }
+      ],
+      "example_correct": "For the four-class micro-Doppler classification task with 75801 segments and 130 measurements, nested cross-validation with 5 outer folds and 5 inner folds was used. The majority baseline macro F1 is 0.2183. \n\nRBF-SVM achieved a mean macro F1 of 0.8771 (std: 0.0248), accuracy of 0.9379, ECE of 0.0281, Brier score of 0.1108, and wall time of 882.5 seconds. \n\nRandom Forest achieved a mean macro F1 of 0.8353 (std: 0.0396), accuracy of 0.9181, ECE of 0.0213, Brier score of 0.1249, and wall time of 1380.2 seconds. \n\nXGBoost achieved a mean macro F1 of 0.8625 (std: 0.0369), accuracy of 0.93, ECE of 0.0258, Brier score of 0.1091, and wall time of 161.4 seconds. \n\nMLP, with 3108 parameters, achieved a mean macro F1 of 0.8338 (std: 0.0305), accuracy of 0.9137, ECE of 0.0209, Brier score of 0.1276, and wall time of 6711.2 seconds."
+    }
+  }
+}

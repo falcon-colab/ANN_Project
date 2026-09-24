@@ -1,0 +1,76 @@
+=== Tue Sep 22 01:39:38 PM PKT 2026 on argon01 ===
+--- environment ---
+torch 2.5.1 cuda True NVIDIA GeForce RTX 4090
+numpy 2.5.3 pandas 3.0.3 sklearn 1.8.0
+--- checkpoints and features present? ---
+/data/gmustafa/se801/artifacts/models/mlp_fold0.pt
+/data/gmustafa/se801/artifacts/models/mlp_fold1.pt
+/data/gmustafa/se801/artifacts/models/mlp_fold2.pt
+/data/gmustafa/se801/artifacts/models/mlp_fold3.pt
+/data/gmustafa/se801/artifacts/models/mlp_fold4.pt
+-rw-r--r-- 1 gmustafa users 19295945 Sep 22 11:52 /data/gmustafa/se801/artifacts/s1_features.csv
+--- batch-one latency, GPU and CPU ---
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+=== batch-one latency on cuda ===
+  mlp_fold0.pt repeat 1: mean 0.0562 ms, p95 0.0573 ms
+  mlp_fold0.pt repeat 2: mean 0.0564 ms, p95 0.0578 ms
+  mlp_fold0.pt repeat 3: mean 0.0560 ms, p95 0.0571 ms
+  mlp_fold0.pt repeat 4: mean 0.0560 ms, p95 0.0570 ms
+  mlp_fold0.pt repeat 5: mean 0.0560 ms, p95 0.0570 ms
+  mlp_fold1.pt repeat 1: mean 0.0561 ms, p95 0.0571 ms
+  mlp_fold1.pt repeat 2: mean 0.0559 ms, p95 0.0569 ms
+  mlp_fold1.pt repeat 3: mean 0.0560 ms, p95 0.0570 ms
+  mlp_fold1.pt repeat 4: mean 0.0559 ms, p95 0.0569 ms
+  mlp_fold1.pt repeat 5: mean 0.0562 ms, p95 0.0573 ms
+  mlp_fold2.pt repeat 1: mean 0.0558 ms, p95 0.0569 ms
+  mlp_fold2.pt repeat 2: mean 0.0555 ms, p95 0.0567 ms
+  mlp_fold2.pt repeat 3: mean 0.0557 ms, p95 0.0568 ms
+  mlp_fold2.pt repeat 4: mean 0.0556 ms, p95 0.0566 ms
+  mlp_fold2.pt repeat 5: mean 0.0558 ms, p95 0.0568 ms
+  mlp_fold3.pt repeat 1: mean 0.0558 ms, p95 0.0569 ms
+  mlp_fold3.pt repeat 2: mean 0.0561 ms, p95 0.0574 ms
+  mlp_fold3.pt repeat 3: mean 0.0558 ms, p95 0.0569 ms
+  mlp_fold3.pt repeat 4: mean 0.0559 ms, p95 0.0571 ms
+  mlp_fold3.pt repeat 5: mean 0.0557 ms, p95 0.0569 ms
+  mlp_fold4.pt repeat 1: mean 0.0556 ms, p95 0.0567 ms
+  mlp_fold4.pt repeat 2: mean 0.0556 ms, p95 0.0566 ms
+  mlp_fold4.pt repeat 3: mean 0.0553 ms, p95 0.0565 ms
+  mlp_fold4.pt repeat 4: mean 0.0551 ms, p95 0.0563 ms
+  mlp_fold4.pt repeat 5: mean 0.0555 ms, p95 0.0566 ms
+  cuda: mean 0.0558 ms, p95 0.0569 ms, fold spread 0.0007 ms, worst repeat spread 0.0005 ms
+
+=== batch-one latency on cpu ===
+  mlp_fold0.pt repeat 1: mean 0.0231 ms, p95 0.0235 ms
+  mlp_fold0.pt repeat 2: mean 0.0232 ms, p95 0.0236 ms
+  mlp_fold0.pt repeat 3: mean 0.0232 ms, p95 0.0236 ms
+  mlp_fold0.pt repeat 4: mean 0.0232 ms, p95 0.0236 ms
+  mlp_fold0.pt repeat 5: mean 0.0232 ms, p95 0.0237 ms
+  mlp_fold1.pt repeat 1: mean 0.0231 ms, p95 0.0235 ms
+  mlp_fold1.pt repeat 2: mean 0.0231 ms, p95 0.0236 ms
+  mlp_fold1.pt repeat 3: mean 0.0232 ms, p95 0.0237 ms
+  mlp_fold1.pt repeat 4: mean 0.0232 ms, p95 0.0236 ms
+  mlp_fold1.pt repeat 5: mean 0.0232 ms, p95 0.0236 ms
+  mlp_fold2.pt repeat 1: mean 0.0235 ms, p95 0.0239 ms
+  mlp_fold2.pt repeat 2: mean 0.0235 ms, p95 0.0239 ms
+  mlp_fold2.pt repeat 3: mean 0.0236 ms, p95 0.0241 ms
+  mlp_fold2.pt repeat 4: mean 0.0235 ms, p95 0.0240 ms
+  mlp_fold2.pt repeat 5: mean 0.0235 ms, p95 0.0240 ms
+  mlp_fold3.pt repeat 1: mean 0.0235 ms, p95 0.0239 ms
+  mlp_fold3.pt repeat 2: mean 0.0233 ms, p95 0.0238 ms
+  mlp_fold3.pt repeat 3: mean 0.0234 ms, p95 0.0238 ms
+  mlp_fold3.pt repeat 4: mean 0.0235 ms, p95 0.0240 ms
+  mlp_fold3.pt repeat 5: mean 0.0234 ms, p95 0.0238 ms
+  mlp_fold4.pt repeat 1: mean 0.0234 ms, p95 0.0239 ms
+  mlp_fold4.pt repeat 2: mean 0.0234 ms, p95 0.0239 ms
+  mlp_fold4.pt repeat 3: mean 0.0235 ms, p95 0.0239 ms
+  mlp_fold4.pt repeat 4: mean 0.0236 ms, p95 0.0240 ms
+  mlp_fold4.pt repeat 5: mean 0.0235 ms, p95 0.0240 ms
+  cpu: mean 0.0234 ms, p95 0.0238 ms, fold spread 0.0004 ms, worst repeat spread 0.0002 ms
+
+Wrote /data/gmustafa/se801/artifacts/results_mlp_latency.json
+=== done Tue Sep 22 01:39:44 PM PKT 2026 ===
+results: /data/gmustafa/se801/artifacts/results_mlp_latency.json

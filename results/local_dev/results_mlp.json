@@ -1,0 +1,323 @@
+{
+  "generated": "2026-09-04T11:52:32.035317+00:00",
+  "commit": "ed91f55",
+  "host": "CON",
+  "device": "cpu",
+  "features": [
+    "side_lobe_energy_ratio",
+    "side_lobe_entropy",
+    "spectral_entropy",
+    "temporal_energy_variance",
+    "temporal_entropy",
+    "doppler_bandwidth_80",
+    "doppler_spread",
+    "zero_doppler_ratio",
+    "skewness",
+    "kurtosis"
+  ],
+  "seed": 2026,
+  "outer_fold_seeds": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030
+  ],
+  "batch_size": 64,
+  "max_epochs": 60,
+  "patience": 8,
+  "grad_clip": 1.0,
+  "dropout": 0.3,
+  "model": {
+    "model_name": "MLP",
+    "architecture": "10-64-32-4",
+    "parameter_count": 3108,
+    "outer_fold_scores": [
+      0.781,
+      0.8748,
+      0.8282,
+      0.8429,
+      0.8423
+    ],
+    "mean_macro_f1": 0.8338419240071305,
+    "std_macro_f1": 0.03049945094584645,
+    "accuracy": 0.9137107873261268,
+    "ece": 0.020872172196212367,
+    "brier_score": 0.12756662875409458,
+    "selected_params_per_fold": [
+      {
+        "lr": 0.001,
+        "weight_decay": 0.0001
+      },
+      {
+        "lr": 0.001,
+        "weight_decay": 1e-05
+      },
+      {
+        "lr": 0.001,
+        "weight_decay": 1e-05
+      },
+      {
+        "lr": 0.001,
+        "weight_decay": 0.0001
+      },
+      {
+        "lr": 0.001,
+        "weight_decay": 0.0001
+      }
+    ],
+    "wall_seconds": 6711.2,
+    "per_fold": [
+      {
+        "macro_f1": 0.7810243367001234,
+        "accuracy": 0.8940546260167979,
+        "per_class_f1": [
+          0.9422518006823638,
+          0.6948968512486428,
+          0.6817538896746818,
+          0.8051948051948052
+        ],
+        "confusion_matrix": [
+          [
+            11185,
+            186,
+            69,
+            294
+          ],
+          [
+            428,
+            960,
+            158,
+            2
+          ],
+          [
+            377,
+            69,
+            723,
+            1
+          ],
+          [
+            17,
+            0,
+            1,
+            651
+          ]
+        ],
+        "ece": 0.014474860869043076,
+        "brier_score": 0.15234436402050572,
+        "outer_fold": 0,
+        "seed": 2026,
+        "params": {
+          "lr": 0.001,
+          "weight_decay": 0.0001
+        },
+        "mean_inner_macro_f1": 0.8451229250704493,
+        "best_epoch": 15,
+        "n_epochs": 24,
+        "parameter_count": 3108,
+        "inner_seconds": 1580.3,
+        "final_fit_seconds": 24.0
+      },
+      {
+        "macro_f1": 0.8747730417192823,
+        "accuracy": 0.943347468857673,
+        "per_class_f1": [
+          0.9712478675154995,
+          0.8117977528089888,
+          0.8443418013856813,
+          0.8717047451669596
+        ],
+        "confusion_matrix": [
+          [
+            11671,
+            50,
+            57,
+            20
+          ],
+          [
+            329,
+            1156,
+            70,
+            0
+          ],
+          [
+            116,
+            87,
+            914,
+            7
+          ],
+          [
+            119,
+            0,
+            0,
+            496
+          ]
+        ],
+        "ece": 0.050852630576703806,
+        "brier_score": 0.10710476087854645,
+        "outer_fold": 1,
+        "seed": 2027,
+        "params": {
+          "lr": 0.001,
+          "weight_decay": 1e-05
+        },
+        "mean_inner_macro_f1": 0.8378631366816631,
+        "best_epoch": 23,
+        "n_epochs": 32,
+        "parameter_count": 3108,
+        "inner_seconds": 1261.4,
+        "final_fit_seconds": 31.7
+      },
+      {
+        "macro_f1": 0.8281870181730773,
+        "accuracy": 0.931848054679285,
+        "per_class_f1": [
+          0.9653621981681931,
+          0.8083423229054297,
+          0.849388379204893,
+          0.6896551724137931
+        ],
+        "confusion_matrix": [
+          [
+            11594,
+            57,
+            57,
+            4
+          ],
+          [
+            271,
+            1124,
+            147,
+            0
+          ],
+          [
+            132,
+            58,
+            1111,
+            0
+          ],
+          [
+            311,
+            0,
+            0,
+            350
+          ]
+        ],
+        "ece": 0.010389987281381638,
+        "brier_score": 0.09953754300127475,
+        "outer_fold": 2,
+        "seed": 2028,
+        "params": {
+          "lr": 0.001,
+          "weight_decay": 1e-05
+        },
+        "mean_inner_macro_f1": 0.8515119703579842,
+        "best_epoch": 28,
+        "n_epochs": 37,
+        "parameter_count": 3108,
+        "inner_seconds": 1407.8,
+        "final_fit_seconds": 36.6
+      },
+      {
+        "macro_f1": 0.8429294144442295,
+        "accuracy": 0.8976579413501279,
+        "per_class_f1": [
+          0.9390862944162437,
+          0.6517300056721498,
+          0.8178311187312474,
+          0.9630702389572773
+        ],
+        "confusion_matrix": [
+          [
+            10915,
+            772,
+            17,
+            39
+          ],
+          [
+            314,
+            1149,
+            66,
+            0
+          ],
+          [
+            264,
+            76,
+            954,
+            2
+          ],
+          [
+            10,
+            0,
+            0,
+            665
+          ]
+        ],
+        "ece": 0.018176109175477753,
+        "brier_score": 0.13892000161815382,
+        "outer_fold": 3,
+        "seed": 2029,
+        "params": {
+          "lr": 0.001,
+          "weight_decay": 0.0001
+        },
+        "mean_inner_macro_f1": 0.839846024162016,
+        "best_epoch": 19,
+        "n_epochs": 28,
+        "parameter_count": 3108,
+        "inner_seconds": 1189.9,
+        "final_fit_seconds": 27.7
+      },
+      {
+        "macro_f1": 0.8422958089989405,
+        "accuracy": 0.90164584572675,
+        "per_class_f1": [
+          0.9453770548838828,
+          0.6602924634420697,
+          0.8096446700507615,
+          0.9538690476190477
+        ],
+        "confusion_matrix": [
+          [
+            10869,
+            734,
+            142,
+            25
+          ],
+          [
+            259,
+            1174,
+            128,
+            1
+          ],
+          [
+            77,
+            86,
+            957,
+            17
+          ],
+          [
+            19,
+            0,
+            0,
+            641
+          ]
+        ],
+        "ece": 0.010467273078455542,
+        "brier_score": 0.13992647425199217,
+        "outer_fold": 4,
+        "seed": 2030,
+        "params": {
+          "lr": 0.001,
+          "weight_decay": 0.0001
+        },
+        "mean_inner_macro_f1": 0.8410031645268315,
+        "best_epoch": 43,
+        "n_epochs": 52,
+        "parameter_count": 3108,
+        "inner_seconds": 1099.6,
+        "final_fit_seconds": 51.7
+      }
+    ]
+  }
+}

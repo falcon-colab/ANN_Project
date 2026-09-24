@@ -1,0 +1,46 @@
+{
+  "n_rows": 75868,
+  "memmap_shape": [
+    75868,
+    5,
+    256
+  ],
+  "memmap_dtype": "<f4",
+  "seed": 2026,
+  "fold_manifest_sha256": "fbece6fb30a8d9e8468cac2ba89748d298d0b8debe54402ffc278302ad8fb7a6",
+  "sklearn_version": "1.9.0",
+  "numpy_version": "2.5.2",
+  "n_segments": 75868,
+  "n_measurements": 130,
+  "n_edge_flagged": 67,
+  "segments_per_class": {
+    "drone": 58768,
+    "bird": 7792,
+    "human": 6028,
+    "reflector": 3280
+  },
+  "measurements_per_class": {
+    "bird": 56,
+    "drone": 44,
+    "human": 11,
+    "reflector": 19
+  },
+  "raw_labels": [
+    "CR",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "black-headed gull",
+    "heron",
+    "human_run",
+    "human_walk",
+    "pigeon",
+    "raven",
+    "seagull",
+    "seagull and black-headed gull"
+  ],
+  "author_split_is_measurement_disjoint": false
+}

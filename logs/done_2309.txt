@@ -1,0 +1,64 @@
+Tue Sep 22 03:18:27 PM PKT 2026
+JobID             State    Elapsed     MaxRSS ExitCode 
+------------ ---------- ---------- ---------- -------- 
+2309          COMPLETED   01:29:57                 0:0 
+2309.batch    COMPLETED   01:29:57  21939576K      0:0 
+total 72M
+-rw-rw-rw- 1 gmustafa users 9.4M Sep  2 22:50 dataset_manifest.csv
+-rw-r--r-- 1 gmustafa users 143K Sep 22 11:52 feature_correlation.png
+-rw-r--r-- 1 gmustafa users 109K Sep 22 11:52 feature_distributions.png
+-rw-rw-rw- 1 gmustafa users 9.4M Sep  2 22:50 fold_manifest.csv
+-rw-rw-rw- 1 gmustafa users  890 Sep  2 22:50 manifest_meta.json
+-rw-r--r-- 1 gmustafa users  22K Sep 22 13:14 mlp_training_curves.csv
+drwxr-xr-x 2 gmustafa users 4.0K Sep 22 13:14 models
+-rw-r--r-- 1 gmustafa users 8.3M Sep 22 13:14 oof_predictions_mlp.csv
+-rw-r--r-- 1 gmustafa users 6.7M Sep 22 12:22 oof_predictions_rf.csv
+-rw-r--r-- 1 gmustafa users  11M Sep 22 12:01 oof_predictions_svm.csv
+-rw-r--r-- 1 gmustafa users 8.4M Sep 22 12:24 oof_predictions_xgb.csv
+-rw-r--r-- 1 gmustafa users  27K Sep 22 15:03 results_ablations.json
+-rw-r--r-- 1 gmustafa users  27K Sep 22 12:24 results_classical_full.json
+-rw-r--r-- 1 gmustafa users 6.6K Sep 22 13:14 results_mlp.json
+-rw-r--r-- 1 gmustafa users 5.4K Sep 22 13:39 results_mlp_latency.json
+-rw-r--r-- 1 gmustafa users  23K Sep 22 15:18 results_robustness.json
+-rw-r--r-- 1 gmustafa users 1.4K Sep 22 12:24 run_ledger.csv
+-rw-r--r-- 1 gmustafa users  19M Sep 22 11:52 s1_features.csv
+
+=== permutation importance, clean vs 0 dB ===
+  svm
+    spectral_entropy            0.4640    0.0599  -0.4041
+    doppler_spread              0.4554    0.0346  -0.4208
+    side_lobe_energy_ratio      0.4331    0.0584  -0.3747
+    kurtosis                    0.3587    0.0410  -0.3177
+    temporal_entropy            0.2821    0.0948  -0.1873
+    side_lobe_entropy           0.2158   -0.0011  -0.2169
+    zero_doppler_ratio          0.2099    0.0751  -0.1348
+    temporal_energy_variance    0.1734    0.0563  -0.1171
+    doppler_bandwidth_80        0.1594    0.0113  -0.1481
+    skewness                    0.0863    0.0177  -0.0686
+  xgb
+    side_lobe_energy_ratio      0.4370    0.0105  -0.4265
+    doppler_spread              0.3207    0.0001  -0.3206
+    spectral_entropy            0.3127   -0.0006  -0.3133
+    side_lobe_entropy           0.1487   -0.0024  -0.1511
+    zero_doppler_ratio          0.1012    0.0075  -0.0937
+    temporal_entropy            0.0818   -0.0053  -0.0871
+    kurtosis                    0.0725    0.0025  -0.0700
+    doppler_bandwidth_80        0.0588   -0.0003  -0.0591
+    skewness                    0.0381    0.0013  -0.0368
+    temporal_energy_variance    0.0318   -0.0027  -0.0345
+  rf
+    spectral_entropy            0.2507    0.0095  -0.2412
+    side_lobe_energy_ratio      0.2129    0.0197  -0.1932
+    doppler_spread              0.1566    0.0009  -0.1557
+    doppler_bandwidth_80        0.1088    0.0004  -0.1084
+    side_lobe_entropy           0.0910   -0.0070  -0.0980
+    zero_doppler_ratio          0.0884    0.0079  -0.0805
+    temporal_entropy            0.0585   -0.0007  -0.0592
+    kurtosis                    0.0341    0.0026  -0.0315
+    skewness                    0.0336    0.0028  -0.0308
+    temporal_energy_variance    0.0098   -0.0005  -0.0103
+
+total 15.0 min | wrote results_robustness.json
+=== clearing scratch ===
+=== done, job 2309 at Tue Sep 22 03:18:27 PM PKT 2026 ===
+artefacts are in /data/gmustafa/se801/artifacts

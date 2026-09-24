@@ -1,0 +1,192 @@
+{
+  "generated": "2026-09-22T08:39:41.079528+00:00",
+  "protocol": "batch 1, 100 warm-up, 1000 timed, 5 repeats, data loading excluded",
+  "devices": {
+    "cuda": {
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4090",
+      "n_warmup": 100,
+      "n_timed": 1000,
+      "repeats": 5,
+      "mean_latency_ms": 0.05582814803929068,
+      "p95_latency_ms": 0.05691824391033151,
+      "fold_spread_ms": 0.000680526596261187,
+      "worst_repeat_spread_ms": 0.0004844030336244032,
+      "per_fold": [
+        {
+          "checkpoint": "mlp_fold0.pt",
+          "outer_fold": 0,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.05612498199807305,
+          "p95_latency_ms": 0.05724984968765057,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0004844030336244032,
+          "latency_per_repeat_ms": [
+            0.0562,
+            0.0564,
+            0.056,
+            0.056,
+            0.056
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold1.pt",
+          "outer_fold": 1,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.05603466441680212,
+          "p95_latency_ms": 0.05703846018150216,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.00036591896969184745,
+          "latency_per_repeat_ms": [
+            0.0561,
+            0.0559,
+            0.056,
+            0.0559,
+            0.0562
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold2.pt",
+          "outer_fold": 2,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.0556698269858316,
+          "p95_latency_ms": 0.05675975993653992,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0002935840129794087,
+          "latency_per_repeat_ms": [
+            0.0558,
+            0.0555,
+            0.0557,
+            0.0556,
+            0.0558
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold3.pt",
+          "outer_fold": 3,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.05586681139393477,
+          "p95_latency_ms": 0.05701324991605361,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0004319509880588157,
+          "latency_per_repeat_ms": [
+            0.0558,
+            0.0561,
+            0.0558,
+            0.0559,
+            0.0557
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold4.pt",
+          "outer_fold": 4,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.055444455401811865,
+          "p95_latency_ms": 0.0565298998299113,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0004774259559781058,
+          "latency_per_repeat_ms": [
+            0.0556,
+            0.0556,
+            0.0553,
+            0.0551,
+            0.0555
+          ]
+        }
+      ]
+    },
+    "cpu": {
+      "device": "cpu",
+      "device_name": "cpu",
+      "n_warmup": 100,
+      "n_timed": 1000,
+      "repeats": 5,
+      "mean_latency_ms": 0.02335836891710642,
+      "p95_latency_ms": 0.02379450800435734,
+      "fold_spread_ms": 0.0003534993898938396,
+      "worst_repeat_spread_ms": 0.00018137101869797334,
+      "per_fold": [
+        {
+          "checkpoint": "mlp_fold0.pt",
+          "outer_fold": 0,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.02318503579663229,
+          "p95_latency_ms": 0.023606239756190917,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 7.198803723440506e-05,
+          "latency_per_repeat_ms": [
+            0.0231,
+            0.0232,
+            0.0232,
+            0.0232,
+            0.0232
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold1.pt",
+          "outer_fold": 1,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.023172794604033698,
+          "p95_latency_ms": 0.023605630158272106,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.00012956600403413177,
+          "latency_per_repeat_ms": [
+            0.0231,
+            0.0231,
+            0.0232,
+            0.0232,
+            0.0232
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold2.pt",
+          "outer_fold": 2,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.023526293993927538,
+          "p95_latency_ms": 0.023982370221347082,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 8.615998376626521e-05,
+          "latency_per_repeat_ms": [
+            0.0235,
+            0.0235,
+            0.0236,
+            0.0235,
+            0.0235
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold3.pt",
+          "outer_fold": 3,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.023414186580703246,
+          "p95_latency_ms": 0.023851720070524607,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.00018137101869797334,
+          "latency_per_repeat_ms": [
+            0.0235,
+            0.0233,
+            0.0234,
+            0.0235,
+            0.0234
+          ]
+        },
+        {
+          "checkpoint": "mlp_fold4.pt",
+          "outer_fold": 4,
+          "parameter_count": 3108,
+          "mean_latency_ms": 0.023493533610235318,
+          "p95_latency_ms": 0.023926579815451987,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0001493669296905864,
+          "latency_per_repeat_ms": [
+            0.0234,
+            0.0234,
+            0.0235,
+            0.0236,
+            0.0235
+          ]
+        }
+      ]
+    }
+  }
+}

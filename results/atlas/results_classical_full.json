@@ -1,0 +1,1112 @@
+{
+  "latency_measured": true,
+  "grouped_calibration": true,
+  "generated": "2026-09-22T06:52:14.233299+00:00",
+  "commit": "unknown",
+  "host": "argon01",
+  "feature_set": "full",
+  "features": [
+    "side_lobe_energy_ratio",
+    "side_lobe_entropy",
+    "spectral_entropy",
+    "temporal_energy_variance",
+    "temporal_entropy",
+    "doppler_bandwidth_80",
+    "doppler_spread",
+    "zero_doppler_ratio",
+    "skewness",
+    "kurtosis"
+  ],
+  "signed_log": true,
+  "edge_excluded": true,
+  "n_segments": 75801,
+  "seed": 2026,
+  "outer_fold_seeds": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030
+  ],
+  "majority_baseline": {
+    "mean_macro_f1": 0.21833414884901364,
+    "std_macro_f1": 0.0007247257760292539,
+    "per_fold": [
+      0.21846955874138893,
+      0.21937523242841206,
+      0.21746880570409982,
+      0.21757578003409175,
+      0.21878136733707573
+    ]
+  },
+  "models": {
+    "svm": {
+      "model_name": "RBF-SVM",
+      "n_configs": 9,
+      "n_inner_fits": 225,
+      "outer_fold_scores": [
+        0.8306,
+        0.8822,
+        0.9036,
+        0.8904,
+        0.8786
+      ],
+      "mean_macro_f1": 0.8770877916461985,
+      "std_macro_f1": 0.02479157062698677,
+      "accuracy": 0.9378854417859293,
+      "ece": 0.028137062739434587,
+      "brier_score": 0.110838468523062,
+      "selected_params_per_fold": [
+        {
+          "C": 100,
+          "gamma": "scale"
+        },
+        {
+          "C": 100,
+          "gamma": "scale"
+        },
+        {
+          "C": 100,
+          "gamma": "scale"
+        },
+        {
+          "C": 100,
+          "gamma": "scale"
+        },
+        {
+          "C": 100,
+          "gamma": "scale"
+        }
+      ],
+      "mean_latency_ms": 0.38786159692223005,
+      "p95_latency_ms": 0.4018293380813702,
+      "latency_mean_spread_ms": 0.0027532016070836106,
+      "inner_seconds_total": 265.5,
+      "wall_seconds": 549.7,
+      "peak_memory_mb": 2398.2,
+      "per_fold": [
+        {
+          "macro_f1": 0.8305869161725852,
+          "accuracy": 0.9227564314529463,
+          "per_class_f1": [
+            0.9644318805113709,
+            0.7718233906302663,
+            0.6807710390220969,
+            0.9053213545266068
+          ],
+          "confusion_matrix": [
+            [
+              11429,
+              78,
+              106,
+              121
+            ],
+            [
+              275,
+              1145,
+              126,
+              2
+            ],
+            [
+              252,
+              194,
+              724,
+              0
+            ],
+            [
+              11,
+              2,
+              1,
+              655
+            ]
+          ],
+          "ece": 0.03222912193380764,
+          "brier_score": 0.1414637994587209,
+          "outer_fold": 0,
+          "seed": 2026,
+          "params": {
+            "C": 100,
+            "gamma": "scale"
+          },
+          "mean_inner_macro_f1": 0.8545127651858936,
+          "n_train": 60680,
+          "n_test": 15121,
+          "inner_seconds": 52.9,
+          "final_fit_seconds": 50.8,
+          "mean_latency_ms": 0.38807879280466295,
+          "p95_latency_ms": 0.40252814995255903,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0014444599928538082,
+          "latency_per_repeat_ms": [
+            0.3883,
+            0.3877,
+            0.3883,
+            0.3874,
+            0.3888
+          ],
+          "n_support_vectors": 7138
+        },
+        {
+          "macro_f1": 0.8822118333352045,
+          "accuracy": 0.9503710575139147,
+          "per_class_f1": [
+            0.9745631312073084,
+            0.8492246783239855,
+            0.8955357142857143,
+            0.8095238095238095
+          ],
+          "confusion_matrix": [
+            [
+              11628,
+              115,
+              45,
+              10
+            ],
+            [
+              202,
+              1287,
+              66,
+              0
+            ],
+            [
+              47,
+              74,
+              1003,
+              0
+            ],
+            [
+              188,
+              0,
+              2,
+              425
+            ]
+          ],
+          "ece": 0.038175169348120354,
+          "brier_score": 0.09330510795798366,
+          "outer_fold": 1,
+          "seed": 2027,
+          "params": {
+            "C": 100,
+            "gamma": "scale"
+          },
+          "mean_inner_macro_f1": 0.8332042571354211,
+          "n_train": 60709,
+          "n_test": 15092,
+          "inner_seconds": 55.2,
+          "final_fit_seconds": 55.0,
+          "mean_latency_ms": 0.38678445980094694,
+          "p95_latency_ms": 0.40055645026768616,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0023773220182192745,
+          "latency_per_repeat_ms": [
+            0.3851,
+            0.3874,
+            0.3875,
+            0.3872,
+            0.3866
+          ],
+          "n_support_vectors": 7608
+        },
+        {
+          "macro_f1": 0.9036475170772279,
+          "accuracy": 0.955310199789695,
+          "per_class_f1": [
+            0.9791569779731958,
+            0.8491134158581466,
+            0.885003885003885,
+            0.9013157894736842
+          ],
+          "confusion_matrix": [
+            [
+              11580,
+              85,
+              42,
+              5
+            ],
+            [
+              179,
+              1269,
+              92,
+              2
+            ],
+            [
+              69,
+              93,
+              1139,
+              0
+            ],
+            [
+              113,
+              0,
+              0,
+              548
+            ]
+          ],
+          "ece": 0.03072137457460134,
+          "brier_score": 0.08538840468887371,
+          "outer_fold": 2,
+          "seed": 2028,
+          "params": {
+            "C": 100,
+            "gamma": "scale"
+          },
+          "mean_inner_macro_f1": 0.8673267862353086,
+          "n_train": 60585,
+          "n_test": 15216,
+          "inner_seconds": 55.7,
+          "final_fit_seconds": 55.9,
+          "mean_latency_ms": 0.39211707560498327,
+          "p95_latency_ms": 0.40589514008388505,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0032819850348460022,
+          "latency_per_repeat_ms": [
+            0.3921,
+            0.3907,
+            0.3922,
+            0.3916,
+            0.394
+          ],
+          "n_support_vectors": 7702
+        },
+        {
+          "macro_f1": 0.890384056870954,
+          "accuracy": 0.9393820114150758,
+          "per_class_f1": [
+            0.9685092694489122,
+            0.7921225382932167,
+            0.8207136640557006,
+            0.9801907556859868
+          ],
+          "confusion_matrix": [
+            [
+              11441,
+              271,
+              12,
+              19
+            ],
+            [
+              215,
+              1267,
+              47,
+              0
+            ],
+            [
+              220,
+              132,
+              943,
+              1
+            ],
+            [
+              7,
+              0,
+              0,
+              668
+            ]
+          ],
+          "ece": 0.01561159458218701,
+          "brier_score": 0.10722879698066262,
+          "outer_fold": 3,
+          "seed": 2029,
+          "params": {
+            "C": 100,
+            "gamma": "scale"
+          },
+          "mean_inner_macro_f1": 0.8598414236517771,
+          "n_train": 60558,
+          "n_test": 15243,
+          "inner_seconds": 52.9,
+          "final_fit_seconds": 54.4,
+          "mean_latency_ms": 0.3901921603950541,
+          "p95_latency_ms": 0.4041060800773266,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0050931320129166124,
+          "latency_per_repeat_ms": [
+            0.387,
+            0.3921,
+            0.3909,
+            0.3914,
+            0.3895
+          ],
+          "n_support_vectors": 7477
+        },
+        {
+          "macro_f1": 0.8786086347750219,
+          "accuracy": 0.9216075087580144,
+          "per_class_f1": [
+            0.9565141763785006,
+            0.7141664347342054,
+            0.8649339582445675,
+            0.9788199697428139
+          ],
+          "confusion_matrix": [
+            [
+              10998,
+              670,
+              96,
+              6
+            ],
+            [
+              179,
+              1283,
+              99,
+              1
+            ],
+            [
+              39,
+              75,
+              1015,
+              8
+            ],
+            [
+              10,
+              3,
+              0,
+              647
+            ]
+          ],
+          "ece": 0.023948053258456593,
+          "brier_score": 0.12680623352906914,
+          "outer_fold": 4,
+          "seed": 2030,
+          "params": {
+            "C": 100,
+            "gamma": "scale"
+          },
+          "mean_inner_macro_f1": 0.8571148152255195,
+          "n_train": 60672,
+          "n_test": 15129,
+          "inner_seconds": 48.9,
+          "final_fit_seconds": 45.7,
+          "mean_latency_ms": 0.38213549600550323,
+          "p95_latency_ms": 0.39606087002539425,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0015691089765823563,
+          "latency_per_repeat_ms": [
+            0.381,
+            0.3825,
+            0.3825,
+            0.3822,
+            0.3826
+          ],
+          "n_support_vectors": 6738
+        }
+      ]
+    },
+    "rf": {
+      "model_name": "Random Forest",
+      "n_configs": 6,
+      "n_inner_fits": 150,
+      "outer_fold_scores": [
+        0.7608,
+        0.8606,
+        0.8322,
+        0.8735,
+        0.8495
+      ],
+      "mean_macro_f1": 0.8353329036274273,
+      "std_macro_f1": 0.039634418938154725,
+      "accuracy": 0.9180984683968552,
+      "ece": 0.021260887985757815,
+      "brier_score": 0.12487101130487861,
+      "selected_params_per_fold": [
+        {
+          "max_depth": null,
+          "min_samples_leaf": 3
+        },
+        {
+          "max_depth": null,
+          "min_samples_leaf": 1
+        },
+        {
+          "max_depth": null,
+          "min_samples_leaf": 1
+        },
+        {
+          "max_depth": null,
+          "min_samples_leaf": 1
+        },
+        {
+          "max_depth": null,
+          "min_samples_leaf": 1
+        }
+      ],
+      "mean_latency_ms": 10.235073013996807,
+      "p95_latency_ms": 10.42251696600033,
+      "latency_mean_spread_ms": 0.04409348518565821,
+      "inner_seconds_total": 653.1,
+      "wall_seconds": 1266.3,
+      "peak_memory_mb": 2313.9,
+      "per_fold": [
+        {
+          "macro_f1": 0.7608400412515002,
+          "accuracy": 0.891673831095827,
+          "per_class_f1": [
+            0.9481693219555256,
+            0.6977559607293128,
+            0.6215435410647957,
+            0.7758913412563667
+          ],
+          "confusion_matrix": [
+            [
+              11278,
+              184,
+              221,
+              51
+            ],
+            [
+              462,
+              995,
+              90,
+              1
+            ],
+            [
+              293,
+              124,
+              753,
+              0
+            ],
+            [
+              22,
+              1,
+              189,
+              457
+            ]
+          ],
+          "ece": 0.018597394101062332,
+          "brier_score": 0.15946509722429253,
+          "outer_fold": 0,
+          "seed": 2026,
+          "params": {
+            "max_depth": null,
+            "min_samples_leaf": 3
+          },
+          "mean_inner_macro_f1": 0.8375687203761937,
+          "n_train": 60680,
+          "n_test": 15121,
+          "inner_seconds": 130.6,
+          "final_fit_seconds": 59.2,
+          "mean_latency_ms": 10.235322232992257,
+          "p95_latency_ms": 10.42482521018428,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.025991289987359778,
+          "latency_per_repeat_ms": [
+            10.225,
+            10.251,
+            10.2299,
+            10.23,
+            10.2407
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.8605764907503328,
+          "accuracy": 0.9381129075006626,
+          "per_class_f1": [
+            0.9645911663843325,
+            0.8122302158273381,
+            0.8736162361623616,
+            0.7918683446272992
+          ],
+          "confusion_matrix": [
+            [
+              11673,
+              71,
+              48,
+              6
+            ],
+            [
+              377,
+              1129,
+              49,
+              0
+            ],
+            [
+              149,
+              25,
+              947,
+              3
+            ],
+            [
+              206,
+              0,
+              0,
+              409
+            ]
+          ],
+          "ece": 0.03267413199045849,
+          "brier_score": 0.09960835197455607,
+          "outer_fold": 1,
+          "seed": 2027,
+          "params": {
+            "max_depth": null,
+            "min_samples_leaf": 1
+          },
+          "mean_inner_macro_f1": 0.8250473638960532,
+          "n_train": 60709,
+          "n_test": 15092,
+          "inner_seconds": 130.6,
+          "final_fit_seconds": 61.8,
+          "mean_latency_ms": 10.284706816797371,
+          "p95_latency_ms": 10.524114080008076,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.016203120009777194,
+          "latency_per_repeat_ms": [
+            10.2748,
+            10.2863,
+            10.287,
+            10.291,
+            10.2844
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.832216340653019,
+          "accuracy": 0.9306650893796005,
+          "per_class_f1": [
+            0.961994954716513,
+            0.8086510263929618,
+            0.8531412565026011,
+            0.705078125
+          ],
+          "confusion_matrix": [
+            [
+              11631,
+              34,
+              45,
+              2
+            ],
+            [
+              352,
+              1103,
+              87,
+              0
+            ],
+            [
+              186,
+              49,
+              1066,
+              0
+            ],
+            [
+              300,
+              0,
+              0,
+              361
+            ]
+          ],
+          "ece": 0.02512841745531017,
+          "brier_score": 0.1106752844374343,
+          "outer_fold": 2,
+          "seed": 2028,
+          "params": {
+            "max_depth": null,
+            "min_samples_leaf": 1
+          },
+          "mean_inner_macro_f1": 0.8388651495338022,
+          "n_train": 60585,
+          "n_test": 15216,
+          "inner_seconds": 131.4,
+          "final_fit_seconds": 60.7,
+          "mean_latency_ms": 10.196655001792896,
+          "p95_latency_ms": 10.356068589926508,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.008287679966088035,
+          "latency_per_repeat_ms": [
+            10.1981,
+            10.199,
+            10.1985,
+            10.197,
+            10.1907
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.873499292932016,
+          "accuracy": 0.9238338909663452,
+          "per_class_f1": [
+            0.9544722339974565,
+            0.7745277269957344,
+            0.7917034421888791,
+            0.973293768545994
+          ],
+          "confusion_matrix": [
+            [
+              11258,
+              454,
+              14,
+              17
+            ],
+            [
+              218,
+              1271,
+              40,
+              0
+            ],
+            [
+              371,
+              28,
+              897,
+              0
+            ],
+            [
+              0,
+              0,
+              19,
+              656
+            ]
+          ],
+          "ece": 0.014762054713639004,
+          "brier_score": 0.1130400440858099,
+          "outer_fold": 3,
+          "seed": 2029,
+          "params": {
+            "max_depth": null,
+            "min_samples_leaf": 1
+          },
+          "mean_inner_macro_f1": 0.8267542590877659,
+          "n_train": 60558,
+          "n_test": 15243,
+          "inner_seconds": 130.8,
+          "final_fit_seconds": 61.4,
+          "mean_latency_ms": 10.305531684999732,
+          "p95_latency_ms": 10.491018479997365,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.010878747983042558,
+          "latency_per_repeat_ms": [
+            10.3127,
+            10.3035,
+            10.3026,
+            10.3071,
+            10.3018
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.8495323525502684,
+          "accuracy": 0.9062066230418402,
+          "per_class_f1": [
+            0.9438317957519845,
+            0.684149855907781,
+            0.8533451484271156,
+            0.9168026101141925
+          ],
+          "confusion_matrix": [
+            [
+              10998,
+              689,
+              81,
+              2
+            ],
+            [
+              299,
+              1187,
+              76,
+              0
+            ],
+            [
+              142,
+              30,
+              963,
+              2
+            ],
+            [
+              96,
+              2,
+              0,
+              562
+            ]
+          ],
+          "ece": 0.01514244166831907,
+          "brier_score": 0.1415662788023002,
+          "outer_fold": 4,
+          "seed": 2030,
+          "params": {
+            "max_depth": null,
+            "min_samples_leaf": 1
+          },
+          "mean_inner_macro_f1": 0.8242258832290469,
+          "n_train": 60672,
+          "n_test": 15129,
+          "inner_seconds": 129.7,
+          "final_fit_seconds": 61.3,
+          "mean_latency_ms": 10.15314933340178,
+          "p95_latency_ms": 10.316558469885422,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.15910658798202348,
+          "latency_per_repeat_ms": [
+            10.2317,
+            10.2319,
+            10.1554,
+            10.0739,
+            10.0728
+          ],
+          "n_support_vectors": null
+        }
+      ]
+    },
+    "xgb": {
+      "model_name": "XGBoost",
+      "n_configs": 8,
+      "n_inner_fits": 200,
+      "outer_fold_scores": [
+        0.7967,
+        0.9029,
+        0.8665,
+        0.8905,
+        0.8557
+      ],
+      "mean_macro_f1": 0.8624710507598884,
+      "std_macro_f1": 0.036908335887412,
+      "accuracy": 0.9300385985853383,
+      "ece": 0.025811778603002593,
+      "brier_score": 0.10909870770254759,
+      "selected_params_per_fold": [
+        {
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "n_estimators": 500
+        },
+        {
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "n_estimators": 500
+        },
+        {
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "n_estimators": 500
+        },
+        {
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "n_estimators": 500
+        },
+        {
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "n_estimators": 500
+        }
+      ],
+      "mean_latency_ms": 0.14521917235582807,
+      "p95_latency_ms": 0.15253641781964689,
+      "latency_mean_spread_ms": 0.0014855057992463117,
+      "inner_seconds_total": 63.7,
+      "wall_seconds": 90.7,
+      "peak_memory_mb": 2377.0,
+      "per_fold": [
+        {
+          "macro_f1": 0.7967065353338634,
+          "accuracy": 0.9047682031611666,
+          "per_class_f1": [
+            0.9566842194666214,
+            0.7465162574651626,
+            0.6147473073736537,
+            0.8688783570300158
+          ],
+          "confusion_matrix": [
+            [
+              11264,
+              145,
+              281,
+              44
+            ],
+            [
+              295,
+              1125,
+              126,
+              2
+            ],
+            [
+              233,
+              194,
+              742,
+              1
+            ],
+            [
+              22,
+              2,
+              95,
+              550
+            ]
+          ],
+          "ece": 0.04388004946618809,
+          "brier_score": 0.14708654096217705,
+          "outer_fold": 0,
+          "seed": 2026,
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 6,
+            "n_estimators": 500
+          },
+          "mean_inner_macro_f1": 0.8483859475981503,
+          "n_train": 60680,
+          "n_test": 15121,
+          "inner_seconds": 13.5,
+          "final_fit_seconds": 3.9,
+          "mean_latency_ms": 0.14033277919752435,
+          "p95_latency_ms": 0.14899363013682884,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.002467254985276668,
+          "latency_per_repeat_ms": [
+            0.1407,
+            0.14,
+            0.1419,
+            0.1397,
+            0.1394
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.9029395626508936,
+          "accuracy": 0.9536178107606679,
+          "per_class_f1": [
+            0.975187969924812,
+            0.8353637312913331,
+            0.9024498886414254,
+            0.8987566607460036
+          ],
+          "confusion_matrix": [
+            [
+              11673,
+              76,
+              45,
+              4
+            ],
+            [
+              292,
+              1200,
+              63,
+              0
+            ],
+            [
+              68,
+              42,
+              1013,
+              1
+            ],
+            [
+              109,
+              0,
+              0,
+              506
+            ]
+          ],
+          "ece": 0.014165541295849784,
+          "brier_score": 0.07489927775721225,
+          "outer_fold": 1,
+          "seed": 2027,
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 6,
+            "n_estimators": 500
+          },
+          "mean_inner_macro_f1": 0.83874825241026,
+          "n_train": 60709,
+          "n_test": 15092,
+          "inner_seconds": 12.5,
+          "final_fit_seconds": 3.9,
+          "mean_latency_ms": 0.14522697819265887,
+          "p95_latency_ms": 0.15114447968699096,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.001997296983972774,
+          "latency_per_repeat_ms": [
+            0.1466,
+            0.1451,
+            0.1449,
+            0.1449,
+            0.1446
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.8664528603808933,
+          "accuracy": 0.9438091482649842,
+          "per_class_f1": [
+            0.9716823056300268,
+            0.830567081604426,
+            0.8822839264763395,
+            0.7812781278127813
+          ],
+          "confusion_matrix": [
+            [
+              11598,
+              61,
+              37,
+              16
+            ],
+            [
+              250,
+              1201,
+              91,
+              0
+            ],
+            [
+              85,
+              88,
+              1128,
+              0
+            ],
+            [
+              227,
+              0,
+              0,
+              434
+            ]
+          ],
+          "ece": 0.01793796147026914,
+          "brier_score": 0.08869213270465805,
+          "outer_fold": 2,
+          "seed": 2028,
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 6,
+            "n_estimators": 500
+          },
+          "mean_inner_macro_f1": 0.856122961044272,
+          "n_train": 60585,
+          "n_test": 15216,
+          "inner_seconds": 12.5,
+          "final_fit_seconds": 3.8,
+          "mean_latency_ms": 0.14722104699994815,
+          "p95_latency_ms": 0.15329500974985422,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0010040500073955627,
+          "latency_per_repeat_ms": [
+            0.1478,
+            0.1474,
+            0.1469,
+            0.1468,
+            0.1473
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.8905271722159557,
+          "accuracy": 0.9354457783900807,
+          "per_class_f1": [
+            0.9638236295539666,
+            0.7942325022529289,
+            0.8208041958041958,
+            0.9832483612527313
+          ],
+          "confusion_matrix": [
+            [
+              11323,
+              384,
+              13,
+              23
+            ],
+            [
+              167,
+              1322,
+              40,
+              0
+            ],
+            [
+              263,
+              94,
+              939,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              675
+            ]
+          ],
+          "ece": 0.01790056172407639,
+          "brier_score": 0.09976396202566265,
+          "outer_fold": 3,
+          "seed": 2029,
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 6,
+            "n_estimators": 500
+          },
+          "mean_inner_macro_f1": 0.8459184529340564,
+          "n_train": 60558,
+          "n_test": 15243,
+          "inner_seconds": 12.6,
+          "final_fit_seconds": 3.9,
+          "mean_latency_ms": 0.14769396039500862,
+          "p95_latency_ms": 0.15599148962792242,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0005043650289735524,
+          "latency_per_repeat_ms": [
+            0.1475,
+            0.148,
+            0.1475,
+            0.148,
+            0.1475
+          ],
+          "n_support_vectors": null
+        },
+        {
+          "macro_f1": 0.8557291232178359,
+          "accuracy": 0.9125520523497918,
+          "per_class_f1": [
+            0.9494739576568385,
+            0.7089097952407305,
+            0.8739854762921828,
+            0.8905472636815921
+          ],
+          "confusion_matrix": [
+            [
+              10965,
+              720,
+              81,
+              4
+            ],
+            [
+              181,
+              1281,
+              100,
+              0
+            ],
+            [
+              59,
+              50,
+              1023,
+              5
+            ],
+            [
+              122,
+              1,
+              0,
+              537
+            ]
+          ],
+          "ece": 0.03517477905862956,
+          "brier_score": 0.13505162506302787,
+          "outer_fold": 4,
+          "seed": 2030,
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 6,
+            "n_estimators": 500
+          },
+          "mean_inner_macro_f1": 0.8600263310998963,
+          "n_train": 60672,
+          "n_test": 15129,
+          "inner_seconds": 12.6,
+          "final_fit_seconds": 3.8,
+          "mean_latency_ms": 0.14562109699400025,
+          "p95_latency_ms": 0.15325747989663796,
+          "latency_repeats": 5,
+          "latency_mean_spread_ms": 0.0014545619906130014,
+          "latency_per_repeat_ms": [
+            0.1465,
+            0.1456,
+            0.1454,
+            0.1455,
+            0.1451
+          ],
+          "n_support_vectors": null
+        }
+      ]
+    }
+  },
+  "total_wall_seconds": 1907.3,
+  "peak_memory_mb": 2207.3
+}

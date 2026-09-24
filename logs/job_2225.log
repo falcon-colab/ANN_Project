@@ -1,0 +1,37 @@
+=== job 2225 on argon01 at Thu Sep 17 01:22:50 PM PKT 2026 ===
+NVIDIA GeForce RTX 4090, 24564 MiB
+torch 2.5.1 cuda True
+sklearn 1.8.0 numpy 2.5.3
+=== staging dataset ===
+staged 130 measurement files
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /home/gmustafa/ANN_Project/data
+  DATA_DIR exists: True
+  current  src/common/config.py
+  current  src/common/generate_manifest.py
+  current  src/common/preprocess_iq.py
+  current  src/common/corruption.py
+  current  src/s1_physics/feature_extractor.py
+  current  src/s1_physics/feature_transforms.py
+  current  src/s1_physics/validate_features.py
+  current  src/s1_physics/zero_doppler_sweep.py
+  current  src/s1_physics/train_classical.py
+  current  src/s1_physics/train_mlp.py
+  current  src/s1_physics/analyze_results.py
+  current  src/s1_physics/compare_models.py
+  current  src/s1_physics/run_robustness.py
+  current  src/s1_physics/run_ablations.py
+  current  src/s1_physics/llm_verify.py
+  current  src/s1_physics/llm_experiment.py
+  current  src/s1_physics/test_llm_verify.py
+
+17 current, 0 stale, 0 absent
+fold_manifest.csv sha256: fbece6fb30a8d9e8468cac2ba89748d298d0b8debe54402ffc278302ad8fb7a6
+=== preprocessing and features ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /home/gmustafa/ANN_Project/data 
+

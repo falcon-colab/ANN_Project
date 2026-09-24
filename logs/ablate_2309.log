@@ -1,0 +1,284 @@
+=== job 2309 on argon01 at Tue Sep 22 01:48:30 PM PKT 2026 ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts
+  DATA_DIR exists: True
+  current  src/common/config.py
+  current  src/common/generate_manifest.py
+  current  src/common/preprocess_iq.py
+  current  src/common/corruption.py
+  current  src/s1_physics/feature_extractor.py
+  current  src/s1_physics/feature_transforms.py
+  current  src/s1_physics/validate_features.py
+  current  src/s1_physics/zero_doppler_sweep.py
+  current  src/s1_physics/train_classical.py
+  current  src/s1_physics/train_mlp.py
+  current  src/s1_physics/analyze_results.py
+  current  src/s1_physics/compare_models.py
+  current  src/s1_physics/run_robustness.py
+  current  src/s1_physics/run_ablations.py
+  current  src/s1_physics/llm_verify.py
+  current  src/s1_physics/llm_experiment.py
+  current  src/s1_physics/measure_mlp_latency.py
+  current  src/s1_physics/test_llm_verify.py
+
+18 current, 0 stale, 0 absent
+=== inputs from job 2305 that these analyses depend on ===
+-rw-r--r-- 1 gmustafa users    27159 Sep 22 12:24 /data/gmustafa/se801/artifacts/results_classical_full.json
+-rw-r--r-- 1 gmustafa users 19295945 Sep 22 11:52 /data/gmustafa/se801/artifacts/s1_features.csv
+/data/gmustafa/se801/artifacts/models/rf_fold0.joblib
+/data/gmustafa/se801/artifacts/models/rf_fold1.joblib
+/data/gmustafa/se801/artifacts/models/rf_fold2.joblib
+/data/gmustafa/se801/artifacts/models/rf_fold3.joblib
+/data/gmustafa/se801/artifacts/models/rf_fold4.joblib
+/data/gmustafa/se801/artifacts/models/svm_fold0.joblib
+/data/gmustafa/se801/artifacts/models/svm_fold1.joblib
+/data/gmustafa/se801/artifacts/models/svm_fold2.joblib
+/data/gmustafa/se801/artifacts/models/svm_fold3.joblib
+/data/gmustafa/se801/artifacts/models/svm_fold4.joblib
+/data/gmustafa/se801/artifacts/models/xgb_fold0.joblib
+/data/gmustafa/se801/artifacts/models/xgb_fold1.joblib
+/data/gmustafa/se801/artifacts/models/xgb_fold2.joblib
+/data/gmustafa/se801/artifacts/models/xgb_fold3.joblib
+/data/gmustafa/se801/artifacts/models/xgb_fold4.joblib
+fold manifest sha256:
+fbece6fb30a8d9e8468cac2ba89748d298d0b8debe54402ffc278302ad8fb7a6  /data/gmustafa/se801/artifacts/fold_manifest.csv
+=== staging dataset to /scratch/gmustafa/se801/zenodo ===
+staged 130 measurement files
+=== preprocessing to node-local scratch ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+  12140/75868 segments
+  21644/75868 segments
+  31797/75868 segments
+  40575/75868 segments
+  50830/75868 segments
+  60289/75868 segments
+  70836/75868 segments
+
+Wrote processed_linear_power.dat  shape=(75868, 5, 256)
+  min 1.671e-07  max 443.7  mean 1
+  sanity: nonnegative and finite
+=== ablations, data efficiency and permutation importance ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+Excluded 67 field-of-view-edge segments (75868 -> 75801)
+=== RBF-SVM: 19 ablation conditions ===
+  condition                    feats  macro-F1    delta
+  only_temporal                    2    0.2896  -0.5884
+  only_energy_distribution         3    0.7290  -0.1490
+  drop_spectral_shape              5    0.7765  -0.1015
+  compact5_correlation             5    0.7924  -0.0856
+  only_spectral_shape              5    0.8016  -0.0764
+  compact5_importance              5    0.8200  -0.0580
+  drop_energy_distribution         7    0.8235  -0.0545
+  drop_spectral_entropy            9    0.8520  -0.0260
+  drop_side_lobe_energy_ratio      9    0.8527  -0.0253
+  drop_side_lobe_entropy           9    0.8530  -0.0250
+  drop_doppler_spread              9    0.8649  -0.0131
+  drop_kurtosis                    9    0.8656  -0.0124
+  drop_zero_doppler_ratio          9    0.8677  -0.0103
+  drop_temporal                    8    0.8686  -0.0094
+  drop_temporal_entropy            9    0.8760  -0.0020
+  baseline                        10    0.8780  +0.0000
+  drop_doppler_bandwidth_80        9    0.8784  +0.0004
+  drop_skewness                    9    0.8786  +0.0006
+  drop_temporal_energy_variance     9    0.8787  +0.0007
+
+=== RBF-SVM: data efficiency ===
+   fraction  train rows  macro-F1     std
+        20%       12761    0.7820  0.0704
+        40%       23606    0.8197  0.0471
+        60%       37739    0.8487  0.0176
+        80%       46385    0.8572  0.0571
+       100%       60640    0.8780  0.0233
+
+=== RBF-SVM: permutation importance ===
+                 feature   mean    std
+        spectral_entropy 0.4636 0.0192
+          doppler_spread 0.4547 0.0270
+  side_lobe_energy_ratio 0.4327 0.0528
+                kurtosis 0.3570 0.0314
+        temporal_entropy 0.2802 0.0401
+       side_lobe_entropy 0.2151 0.0406
+      zero_doppler_ratio 0.2104 0.0345
+temporal_energy_variance 0.1737 0.0575
+    doppler_bandwidth_80 0.1581 0.0459
+                skewness 0.0859 0.0188
+
+=== XGBoost: 19 ablation conditions ===
+  condition                    feats  macro-F1    delta
+  only_temporal                    2    0.3993  -0.4632
+  only_energy_distribution         3    0.7311  -0.1314
+  drop_spectral_shape              5    0.7876  -0.0749
+  compact5_correlation             5    0.7952  -0.0673
+  only_spectral_shape              5    0.8099  -0.0526
+  drop_energy_distribution         7    0.8178  -0.0447
+  compact5_importance              5    0.8330  -0.0295
+  drop_side_lobe_energy_ratio      9    0.8409  -0.0216
+  drop_side_lobe_entropy           9    0.8433  -0.0192
+  drop_spectral_entropy            9    0.8497  -0.0128
+  drop_doppler_spread              9    0.8541  -0.0084
+  drop_zero_doppler_ratio          9    0.8541  -0.0084
+  drop_doppler_bandwidth_80        9    0.8564  -0.0061
+  drop_temporal                    8    0.8590  -0.0035
+  drop_temporal_entropy            9    0.8608  -0.0017
+  drop_temporal_energy_variance     9    0.8623  -0.0002
+  drop_skewness                    9    0.8623  -0.0002
+  drop_kurtosis                    9    0.8624  -0.0001
+  baseline                        10    0.8625  +0.0000
+
+=== XGBoost: data efficiency ===
+   fraction  train rows  macro-F1     std
+        20%       12761    0.7813  0.0415
+        40%       23606    0.8217  0.0436
+        60%       37739    0.8336  0.0234
+        80%       46385    0.8520  0.0421
+       100%       60640    0.8625  0.0369
+
+=== XGBoost: permutation importance ===
+                 feature   mean    std
+  side_lobe_energy_ratio 0.4385 0.0592
+          doppler_spread 0.3194 0.0265
+        spectral_entropy 0.3111 0.0250
+       side_lobe_entropy 0.1495 0.0262
+      zero_doppler_ratio 0.1013 0.0369
+        temporal_entropy 0.0809 0.0340
+                kurtosis 0.0740 0.0311
+    doppler_bandwidth_80 0.0582 0.0350
+                skewness 0.0378 0.0211
+temporal_energy_variance 0.0317 0.0235
+
+=== Random Forest: 19 ablation conditions ===
+  condition                    feats  macro-F1    delta
+  only_temporal                    2    0.4113  -0.4240
+  only_energy_distribution         3    0.7335  -0.1018
+  drop_spectral_shape              5    0.7780  -0.0573
+  drop_energy_distribution         7    0.7803  -0.0550
+  compact5_correlation             5    0.7820  -0.0533
+  only_spectral_shape              5    0.7920  -0.0433
+  compact5_importance              5    0.8199  -0.0154
+  drop_side_lobe_energy_ratio      9    0.8205  -0.0148
+  drop_spectral_entropy            9    0.8236  -0.0117
+  drop_zero_doppler_ratio          9    0.8236  -0.0117
+  drop_side_lobe_entropy           9    0.8255  -0.0098
+  drop_doppler_spread              9    0.8263  -0.0090
+  drop_doppler_bandwidth_80        9    0.8327  -0.0026
+  drop_temporal                    8    0.8336  -0.0017
+  baseline                        10    0.8353  +0.0000
+  drop_kurtosis                    9    0.8354  +0.0001
+  drop_skewness                    9    0.8363  +0.0010
+  drop_temporal_entropy            9    0.8379  +0.0026
+  drop_temporal_energy_variance     9    0.8381  +0.0028
+
+=== Random Forest: data efficiency ===
+   fraction  train rows  macro-F1     std
+        20%       12761    0.7487  0.0676
+        40%       23606    0.8059  0.0451
+        60%       37739    0.8082  0.0322
+        80%       46385    0.8221  0.0573
+       100%       60640    0.8353  0.0396
+
+=== Random Forest: permutation importance ===
+                 feature   mean    std
+        spectral_entropy 0.2492 0.0267
+  side_lobe_energy_ratio 0.2147 0.0902
+          doppler_spread 0.1556 0.0156
+    doppler_bandwidth_80 0.1087 0.0796
+       side_lobe_entropy 0.0908 0.0086
+      zero_doppler_ratio 0.0889 0.0220
+        temporal_entropy 0.0587 0.0315
+                kurtosis 0.0341 0.0154
+                skewness 0.0338 0.0192
+temporal_energy_variance 0.0104 0.0086
+
+total 74.8 min | wrote results_ablations.json
+=== robustness, nine section 17 conditions ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+Excluded 67 edge segments (75868 -> 75801)
+  clean        svm 0.8771  xgb 0.8625  rf 0.8353   (407s)
+  snr-10dB     svm 0.2269  xgb 0.2226  rf 0.2330   (15s)
+  snr-5dB      svm 0.2820  xgb 0.1136  rf 0.1392   (14s)
+  snr+0dB      svm 0.2882  xgb 0.0986  rf 0.0915   (373s)
+  snr+5dB      svm 0.3344  xgb 0.1839  rf 0.1648   (15s)
+  snr+10dB     svm 0.4610  xgb 0.3453  rf 0.3080   (15s)
+  blur1px      svm 0.5272  xgb 0.4984  rf 0.4641   (15s)
+  blur2px      svm 0.4488  xgb 0.4370  rf 0.4126   (15s)
+  blur4px      svm 0.3941  xgb 0.3830  rf 0.3795   (15s)
+  combined     svm 0.1631  xgb 0.0716  rf 0.0735   (15s)
+
+=== macro-F1 by condition (degradation from clean) ===
+condition                  svm               xgb                rf
+clean           0.8771 +0.0000    0.8625 +0.0000    0.8353 +0.0000
+snr-10dB        0.2269 -0.6502    0.2226 -0.6399    0.2330 -0.6023
+snr-5dB         0.2820 -0.5951    0.1136 -0.7489    0.1392 -0.6961
+snr+0dB         0.2882 -0.5889    0.0986 -0.7639    0.0915 -0.7438
+snr+5dB         0.3344 -0.5427    0.1839 -0.6786    0.1648 -0.6705
+snr+10dB        0.4610 -0.4161    0.3453 -0.5172    0.3080 -0.5273
+blur1px         0.5272 -0.3499    0.4984 -0.3641    0.4641 -0.3712
+blur2px         0.4488 -0.4283    0.4370 -0.4255    0.4126 -0.4227
+blur4px         0.3941 -0.4830    0.3830 -0.4795    0.3795 -0.4558
+combined        0.1631 -0.7140    0.0716 -0.7909    0.0735 -0.7618
+
+=== feature stability at 0 dB (Spearman clean vs corrupted) ===
+  side_lobe_entropy          rho   0.304   median shift   0.123
+  doppler_bandwidth_80       rho   0.668   median shift  26.848
+  skewness                   rho   0.718   median shift   0.859
+  doppler_spread             rho   0.819   median shift   2.326
+  kurtosis                   rho   0.871   median shift   0.986
+  temporal_entropy           rho   0.940   median shift   0.151
+  temporal_energy_variance   rho   0.951   median shift   0.693
+  side_lobe_energy_ratio     rho   0.955   median shift   4.889
+  spectral_entropy           rho   0.981   median shift   0.990
+  zero_doppler_ratio         rho   0.985   median shift   0.451
+
+=== permutation importance, clean vs 0 dB ===
+  svm
+    spectral_entropy            0.4640    0.0599  -0.4041
+    doppler_spread              0.4554    0.0346  -0.4208
+    side_lobe_energy_ratio      0.4331    0.0584  -0.3747
+    kurtosis                    0.3587    0.0410  -0.3177
+    temporal_entropy            0.2821    0.0948  -0.1873
+    side_lobe_entropy           0.2158   -0.0011  -0.2169
+    zero_doppler_ratio          0.2099    0.0751  -0.1348
+    temporal_energy_variance    0.1734    0.0563  -0.1171
+    doppler_bandwidth_80        0.1594    0.0113  -0.1481
+    skewness                    0.0863    0.0177  -0.0686
+  xgb
+    side_lobe_energy_ratio      0.4370    0.0105  -0.4265
+    doppler_spread              0.3207    0.0001  -0.3206
+    spectral_entropy            0.3127   -0.0006  -0.3133
+    side_lobe_entropy           0.1487   -0.0024  -0.1511
+    zero_doppler_ratio          0.1012    0.0075  -0.0937
+    temporal_entropy            0.0818   -0.0053  -0.0871
+    kurtosis                    0.0725    0.0025  -0.0700
+    doppler_bandwidth_80        0.0588   -0.0003  -0.0591
+    skewness                    0.0381    0.0013  -0.0368
+    temporal_energy_variance    0.0318   -0.0027  -0.0345
+  rf
+    spectral_entropy            0.2507    0.0095  -0.2412
+    side_lobe_energy_ratio      0.2129    0.0197  -0.1932
+    doppler_spread              0.1566    0.0009  -0.1557
+    doppler_bandwidth_80        0.1088    0.0004  -0.1084
+    side_lobe_entropy           0.0910   -0.0070  -0.0980
+    zero_doppler_ratio          0.0884    0.0079  -0.0805
+    temporal_entropy            0.0585   -0.0007  -0.0592
+    kurtosis                    0.0341    0.0026  -0.0315
+    skewness                    0.0336    0.0028  -0.0308
+    temporal_energy_variance    0.0098   -0.0005  -0.0103
+
+total 15.0 min | wrote results_robustness.json
+=== clearing scratch ===
+=== done, job 2309 at Tue Sep 22 03:18:27 PM PKT 2026 ===
+artefacts are in /data/gmustafa/se801/artifacts

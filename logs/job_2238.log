@@ -1,0 +1,223 @@
+=== job 2238 on argon01 at Thu Sep 17 01:47:07 PM PKT 2026 ===
+NVIDIA GeForce RTX 4090, 24564 MiB
+torch 2.5.1 cuda True
+sklearn 1.8.0 numpy 2.5.3
+=== staging dataset ===
+staged 130 measurement files
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts
+  DATA_DIR exists: True
+  current  src/common/config.py
+  current  src/common/generate_manifest.py
+  current  src/common/preprocess_iq.py
+  current  src/common/corruption.py
+  current  src/s1_physics/feature_extractor.py
+  current  src/s1_physics/feature_transforms.py
+  current  src/s1_physics/validate_features.py
+  current  src/s1_physics/zero_doppler_sweep.py
+  current  src/s1_physics/train_classical.py
+  current  src/s1_physics/train_mlp.py
+  current  src/s1_physics/analyze_results.py
+  current  src/s1_physics/compare_models.py
+  current  src/s1_physics/run_robustness.py
+  current  src/s1_physics/run_ablations.py
+  current  src/s1_physics/llm_verify.py
+  current  src/s1_physics/llm_experiment.py
+  current  src/s1_physics/test_llm_verify.py
+
+17 current, 0 stale, 0 absent
+fold_manifest.csv sha256: fbece6fb30a8d9e8468cac2ba89748d298d0b8debe54402ffc278302ad8fb7a6
+=== preprocessing and features ===
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+  12140/75868 segments
+  21644/75868 segments
+  31797/75868 segments
+  40575/75868 segments
+  50830/75868 segments
+  60289/75868 segments
+  70836/75868 segments
+
+Wrote processed_linear_power.dat  shape=(75868, 5, 256)
+  min 1.671e-07  max 443.7  mean 1
+  sanity: nonnegative and finite
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+  raw_iq_measurement_000.npy: 1228 segments
+  raw_iq_measurement_001.npy: 1254 segments
+  raw_iq_measurement_002.npy: 1349 segments
+  raw_iq_measurement_003.npy: 809 segments
+  raw_iq_measurement_004.npy: 322 segments
+  raw_iq_measurement_005.npy: 317 segments
+  raw_iq_measurement_006.npy: 393 segments
+  raw_iq_measurement_007.npy: 1249 segments
+  raw_iq_measurement_008.npy: 179 segments
+  raw_iq_measurement_009.npy: 98 segments
+  raw_iq_measurement_010.npy: 99 segments
+  raw_iq_measurement_011.npy: 2414 segments
+  raw_iq_measurement_012.npy: 2429 segments
+  raw_iq_measurement_013.npy: 2423 segments
+  raw_iq_measurement_014.npy: 1734 segments
+  raw_iq_measurement_015.npy: 111 segments
+  raw_iq_measurement_016.npy: 68 segments
+  raw_iq_measurement_017.npy: 2699 segments
+  raw_iq_measurement_018.npy: 2469 segments
+  raw_iq_measurement_019.npy: 1405 segments
+  raw_iq_measurement_020.npy: 3639 segments
+  raw_iq_measurement_021.npy: 2759 segments
+  raw_iq_measurement_022.npy: 2350 segments
+  raw_iq_measurement_023.npy: 2669 segments
+  raw_iq_measurement_024.npy: 957 segments
+  raw_iq_measurement_025.npy: 2562 segments
+  raw_iq_measurement_026.npy: 2590 segments
+  raw_iq_measurement_027.npy: 2751 segments
+  raw_iq_measurement_028.npy: 4190 segments
+  raw_iq_measurement_029.npy: 364 segments
+  raw_iq_measurement_030.npy: 518 segments
+  raw_iq_measurement_031.npy: 272 segments
+  raw_iq_measurement_032.npy: 557 segments
+  raw_iq_measurement_033.npy: 157 segments
+  raw_iq_measurement_034.npy: 587 segments
+  raw_iq_measurement_035.npy: 859 segments
+  raw_iq_measurement_036.npy: 444 segments
+  raw_iq_measurement_037.npy: 917 segments
+  raw_iq_measurement_038.npy: 2053 segments
+  raw_iq_measurement_039.npy: 944 segments
+  raw_iq_measurement_040.npy: 606 segments
+  raw_iq_measurement_041.npy: 439 segments
+  raw_iq_measurement_042.npy: 1309 segments
+  raw_iq_measurement_043.npy: 1226 segments
+  raw_iq_measurement_044.npy: 93 segments
+  raw_iq_measurement_045.npy: 97 segments
+  raw_iq_measurement_046.npy: 304 segments
+  raw_iq_measurement_047.npy: 1027 segments
+  raw_iq_measurement_048.npy: 357 segments
+  raw_iq_measurement_049.npy: 972 segments
+  raw_iq_measurement_050.npy: 420 segments
+  raw_iq_measurement_051.npy: 1044 segments
+  raw_iq_measurement_052.npy: 329 segments
+  raw_iq_measurement_053.npy: 992 segments
+  raw_iq_measurement_054.npy: 393 segments
+  raw_iq_measurement_055.npy: 35 segments
+  raw_iq_measurement_056.npy: 145 segments
+  raw_iq_measurement_057.npy: 72 segments
+  raw_iq_measurement_058.npy: 39 segments
+  raw_iq_measurement_059.npy: 63 segments
+  raw_iq_measurement_060.npy: 33 segments
+  raw_iq_measurement_061.npy: 49 segments
+  raw_iq_measurement_062.npy: 41 segments
+  raw_iq_measurement_063.npy: 132 segments
+  raw_iq_measurement_064.npy: 51 segments
+  raw_iq_measurement_065.npy: 39 segments
+  raw_iq_measurement_066.npy: 188 segments
+  raw_iq_measurement_067.npy: 32 segments
+  raw_iq_measurement_068.npy: 19 segments
+  raw_iq_measurement_069.npy: 89 segments
+  raw_iq_measurement_070.npy: 54 segments
+  raw_iq_measurement_071.npy: 126 segments
+  raw_iq_measurement_072.npy: 30 segments
+  raw_iq_measurement_073.npy: 87 segments
+  raw_iq_measurement_074.npy: 78 segments
+  raw_iq_measurement_075.npy: 113 segments
+  raw_iq_measurement_076.npy: 112 segments
+  raw_iq_measurement_077.npy: 50 segments
+  raw_iq_measurement_078.npy: 300 segments
+  raw_iq_measurement_079.npy: 29 segments
+  raw_iq_measurement_080.npy: 90 segments
+  raw_iq_measurement_081.npy: 23 segments
+  raw_iq_measurement_082.npy: 50 segments
+  raw_iq_measurement_083.npy: 15 segments
+  raw_iq_measurement_084.npy: 28 segments
+  raw_iq_measurement_085.npy: 90 segments
+  raw_iq_measurement_086.npy: 43 segments
+  raw_iq_measurement_087.npy: 80 segments
+  raw_iq_measurement_088.npy: 33 segments
+  raw_iq_measurement_089.npy: 100 segments
+  raw_iq_measurement_090.npy: 43 segments
+  raw_iq_measurement_091.npy: 234 segments
+  raw_iq_measurement_092.npy: 15 segments
+  raw_iq_measurement_093.npy: 184 segments
+  raw_iq_measurement_094.npy: 7 segments
+  raw_iq_measurement_095.npy: 650 segments
+  raw_iq_measurement_096.npy: 73 segments
+  raw_iq_measurement_097.npy: 45 segments
+  raw_iq_measurement_098.npy: 33 segments
+  raw_iq_measurement_099.npy: 1008 segments
+  raw_iq_measurement_100.npy: 289 segments
+  raw_iq_measurement_101.npy: 901 segments
+  raw_iq_measurement_102.npy: 126 segments
+  raw_iq_measurement_103.npy: 168 segments
+  raw_iq_measurement_104.npy: 934 segments
+  raw_iq_measurement_105.npy: 137 segments
+  raw_iq_measurement_106.npy: 125 segments
+  raw_iq_measurement_107.npy: 52 segments
+  raw_iq_measurement_108.npy: 63 segments
+  raw_iq_measurement_109.npy: 68 segments
+  raw_iq_measurement_110.npy: 79 segments
+  raw_iq_measurement_111.npy: 289 segments
+  raw_iq_measurement_112.npy: 95 segments
+  raw_iq_measurement_113.npy: 93 segments
+  raw_iq_measurement_114.npy: 93 segments
+  raw_iq_measurement_115.npy: 97 segments
+  raw_iq_measurement_116.npy: 93 segments
+  raw_iq_measurement_117.npy: 98 segments
+  raw_iq_measurement_118.npy: 95 segments
+  raw_iq_measurement_119.npy: 93 segments
+  raw_iq_measurement_120.npy: 93 segments
+  raw_iq_measurement_121.npy: 118 segments
+  raw_iq_measurement_122.npy: 298 segments
+  raw_iq_measurement_123.npy: 302 segments
+  raw_iq_measurement_124.npy: 306 segments
+  raw_iq_measurement_125.npy: 293 segments
+  raw_iq_measurement_126.npy: 183 segments
+  raw_iq_measurement_127.npy: 171 segments
+  raw_iq_measurement_128.npy: 167 segments
+  raw_iq_measurement_129.npy: 303 segments
+
+Wrote s1_features.csv: 75868 rows, 10 features
+  NaN cells: 0
+PROJECT_ENV=atlas
+  DATA_DIR     /scratch/gmustafa/se801/zenodo
+  WORK_DIR     /scratch/gmustafa/se801/work
+  ARTIFACT_DIR /data/gmustafa/se801/artifacts 
+
+Loaded 75868 segments across 130 measurements
+
+=== CHECKPOINT 1: numerical integrity ===
+  PASS  all ten descriptors present
+  PASS  no NaN values
+  PASS  no infinite values
+
+=== CHECKPOINT 2: physics bounds and the reflector gate ===
+  PASS  zero_doppler_ratio within [0, 1]
+  PASS  side_lobe_energy_ratio within [0, 1]
+  PASS  spectral_entropy within [0, 1]
+  PASS  side_lobe_entropy within [0, 1]
+  PASS  temporal_entropy within [0, 1]
+  PASS  doppler_spread nonnegative and within the normalised axis
+        zero_doppler_ratio medians: drone 0.848, bird 0.073, human 0.068, reflector 1.000
+  PASS  reflector zero-Doppler ratio 1.000 >= 0.9
+  PASS  reflector ranks above every moving class (next highest 0.848)
+  WARN  margin over the nearest moving class (drone) is only 0.152. At halfwidth 0.075 the band counts everything under +/-1.24 m/s as stationary, so this is expected if drone targets are near-stationary. Check which class it is before dismissing it.
+  PASS  reflectors have the narrowest Doppler spread
+
+=== CHECKPOINT 3: redundancy and separation ===
+  WARN  4 feature pair(s) above |r| = 0.90 (candidates to drop for the five-feature subset):
+          temporal_energy_variance / temporal_entropy: 0.968
+          spectral_entropy / side_lobe_energy_ratio: 0.944
+          doppler_bandwidth_80 / doppler_spread: 0.920
+          doppler_spread / spectral_entropy: 0.909
+  PASS  zero-Doppler and side-lobe ratios are independent (r = -0.439)
+  PASS  every feature varies across the dataset
+  PASS  wrote feature_correlation.png and feature_distributions.png
+
+GATE PASSED
+=== classical models, latency on this node ===

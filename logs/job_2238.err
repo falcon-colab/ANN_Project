@@ -1,0 +1,6 @@
+usage: train_classical.py [-h] [--models MODELS [MODELS ...]]
+                          [--features {full,compact}] [--no-signed-log]
+                          [--keep-edge] [--n-jobs N_JOBS] [--probe]
+                          [--skip-latency] [--ungrouped-calibration]
+                          [--tag TAG]
+train_classical.py: error: unrecognized arguments: --latency-repeats 5

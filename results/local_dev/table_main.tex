@@ -1,0 +1,15 @@
+\begin{table}
+\caption{S1 model comparison, nested 5x5 measurement-grouped cross-validation.}
+\label{tab:s1_main}
+\begin{tabular}{lrrrrrlrrrrrr}
+\toprule
+model & macro\_f1 & std & accuracy & ece & brier & params & minutes & f1\_drone & f1\_bird & f1\_human & f1\_reflector & top2 \\
+\midrule
+Majority baseline & 0.218300 & 0.000700 & NaN & NaN & NaN & NaN & NaN & NaN & NaN & NaN & NaN & NaN \\
+RBF-SVM & 0.877100 & 0.024800 & 0.937900 & 0.028100 & 0.110800 &  & 14.700000 & 0.968700 & 0.792300 & 0.832700 & 0.920000 & 0.989100 \\
+XGBoost & 0.862500 & 0.036900 & 0.930000 & 0.025800 & 0.109100 &  & 2.700000 & 0.963500 & 0.779700 & 0.818100 & 0.888500 & 0.985300 \\
+Random Forest & 0.835300 & 0.039600 & 0.918100 & 0.021300 & 0.124900 &  & 23.000000 & 0.954700 & 0.752400 & 0.796700 & 0.841800 & 0.982400 \\
+MLP & 0.833800 & 0.030500 & 0.913700 & 0.020900 & 0.127600 & 3108 & 111.900000 & 0.952800 & 0.719000 & 0.803300 & 0.863100 & 0.986900 \\
+\bottomrule
+\end{tabular}
+\end{table}
