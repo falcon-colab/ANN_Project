@@ -99,19 +99,86 @@ def build_condition(manifest: pd.DataFrame, cond: dict, n_jobs: int) -> pd.DataF
     return df
 
 
+def _load_predictor(model_key: str, k: int):
+    """
+    Return (predict, transform, cols) for fold k, or None if absent.
+
+    Two storage formats have to be handled. The three classical models are
+    joblib blobs holding an estimator plus the fold's fitted preprocessor. The
+    MLP is a torch checkpoint holding a state dict plus the scaler's mean and
+    scale, because a FeaturePreprocessor is not picklable across torch
+    versions. Reconstructing the transform from those two arrays reproduces
+    exactly what the network saw in training: signed log on the heavy-tailed
+    moments, then the fold's standardisation.
+
+    Without this, robustness covered three of the four models and the MLP's
+    behaviour under corruption was simply unknown.
+    """
+    jb = ARTIFACT_DIR / "models" / f"{model_key}_fold{k}.joblib"
+    if jb.exists():
+        blob = joblib.load(jb)
+        est, pre, cols = blob["estimator"], blob["preprocessor"], blob["features"]
+
+        def transform(te, pre=pre, cols=cols):
+            return pre.transform(te) if pre is not None \
+                else te[cols].to_numpy(float)
+
+        return est.predict, transform, cols
+
+    pt = ARTIFACT_DIR / "models" / f"{model_key}_fold{k}.pt"
+    if pt.exists():
+        import torch                                   # only needed for the MLP
+        from feature_transforms import HEAVY_TAILED, signed_log1p
+        from train_mlp import MLP, resolve_device
+
+        dev = resolve_device("auto")
+        ck = torch.load(pt, map_location=dev, weights_only=False)
+        cols = list(ck["features"])
+        mean = np.asarray(ck["scaler_mean"], dtype=float)
+        scale = np.asarray(ck["scaler_scale"], dtype=float)
+        net = MLP(len(cols)).to(dev)
+        net.load_state_dict(ck["state_dict"])
+        net.eval()          # dropout off, batch-norm running statistics
+
+        def transform(te, cols=cols, mean=mean, scale=scale):
+            X = te[cols].to_numpy(float)
+            idx = [i for i, c in enumerate(cols) if c in HEAVY_TAILED]
+            if idx:
+                X = X.copy()
+                X[:, idx] = signed_log1p(X[:, idx])
+            return (X - mean) / scale
+
+        def predict(X, net=net, dev=dev):
+            X = np.asarray(X, dtype=np.float32)
+            bad = int((~np.isfinite(X)).sum())
+            if bad:
+                # Severe corruption can make a descriptor undefined. The trees
+                # and the SVM would raise here; zeroing keeps the run alive but
+                # is reported, because a silent zero is a standardised value of
+                # "average" and would flatter the model.
+                print(f"    note: {bad} non-finite feature values replaced "
+                      f"by 0 before the MLP forward pass")
+                X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)
+            with torch.inference_mode():
+                t = torch.as_tensor(X, device=dev)
+                return net(t).argmax(dim=1).cpu().numpy()
+
+        return predict, transform, cols
+    return None
+
+
 def evaluate(df: pd.DataFrame, model_key: str) -> dict:
     """Score the saved per-fold models on their own outer test folds."""
     per_fold, preds, trues = [], [], []
     for k in range(N_OUTER):
-        path = ARTIFACT_DIR / "models" / f"{model_key}_fold{k}.joblib"
-        if not path.exists():
+        loaded = _load_predictor(model_key, k)
+        if loaded is None:
             continue
-        blob = joblib.load(path)
-        est, pre, cols = blob["estimator"], blob["preprocessor"], blob["features"]
+        predict, transform, cols = loaded
         te = df[df["outer_fold"] == k]
-        X = pre.transform(te) if pre is not None else te[cols].to_numpy(float)
+        X = transform(te)
         y = te["class_id"].to_numpy()
-        p = est.predict(X)
+        p = predict(X)
         per_fold.append(f1_score(y, p, average="macro", labels=[0, 1, 2, 3],
                                  zero_division=0))
         preds.append(p)
@@ -154,22 +221,21 @@ def permutation_importance(df: pd.DataFrame, model_key: str, n_repeats=3,
     rng = np.random.default_rng(seed)
     acc = {n: [] for n in FEATURE_NAMES}
     for k in range(N_OUTER):
-        path = ARTIFACT_DIR / "models" / f"{model_key}_fold{k}.joblib"
-        if not path.exists():
+        loaded = _load_predictor(model_key, k)
+        if loaded is None:
             continue
-        blob = joblib.load(path)
-        est, pre, cols = blob["estimator"], blob["preprocessor"], blob["features"]
+        predict, transform, cols = loaded
         te = df[df["outer_fold"] == k]
-        X = pre.transform(te) if pre is not None else te[cols].to_numpy(float)
+        X = transform(te)
         y = te["class_id"].to_numpy()
-        base = f1_score(y, est.predict(X), average="macro", labels=[0, 1, 2, 3],
+        base = f1_score(y, predict(X), average="macro", labels=[0, 1, 2, 3],
                         zero_division=0)
         for j, name in enumerate(cols):
             drops = []
             for _ in range(n_repeats):
                 Xp = X.copy()
                 Xp[:, j] = Xp[rng.permutation(len(Xp)), j]
-                drops.append(base - f1_score(y, est.predict(Xp),
+                drops.append(base - f1_score(y, predict(Xp),
                                              average="macro",
                                              labels=[0, 1, 2, 3],
                                              zero_division=0))
@@ -179,7 +245,8 @@ def permutation_importance(df: pd.DataFrame, model_key: str, n_repeats=3,
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--models", nargs="+", default=["svm", "xgb", "rf"])
+    ap.add_argument("--models", nargs="+", default=["svm", "xgb", "rf"],
+                    help="mlp is supported too, from its .pt checkpoints")
     ap.add_argument("--n-jobs", type=int, default=-1)
     ap.add_argument("--keep-edge", action="store_true")
     ap.add_argument("--skip-importance", action="store_true")

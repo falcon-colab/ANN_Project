@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Clean accuracy and calibration, mean $\pm$ s.d. over five outer folds. Generated from the stored results by \texttt{compare\_models.py}.}
+\label{tab:main}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Model & Macro-F1 & Acc. & ECE & Brier & Top-2 \\
+\midrule
+Majority baseline & .2183 $\pm$ .0007 &  &  &  &  \\
+RBF-SVM & \textbf{.8771} $\pm$ .0248 & \textbf{.9379} & .0281 & .1108 & \textbf{.9891} \\
+XGBoost & .8625 $\pm$ .0369 & .9300 & .0258 & \textbf{.1091} & .9853 \\
+Random Forest & .8353 $\pm$ .0396 & .9181 & \textbf{.0213} & .1249 & .9824 \\
+MLP & .8294 $\pm$ .0319 & .9106 & .0260 & .1332 & .9860 \\
+\bottomrule
+\end{tabular}
+\end{table}

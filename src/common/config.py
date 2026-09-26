@@ -55,6 +55,22 @@ else:
     NUM_WORKERS = 0          # 0 on Windows: avoids DataLoader pipe deadlocks
     PIN_MEMORY = False
 
+# ---------------------------------------------------------------------------
+# Machine-independent overrides. Either directory triple above can be pointed
+# somewhere else without pretending to be on the cluster:
+#
+#   PowerShell:  $env:S1_ARTIFACT_DIR = "C:\\Projects\\ANN_Project\\results\\atlas"
+#   bash:        export S1_ARTIFACT_DIR=/data/$USER/se801/artifacts
+#
+# This exists because the only way to read a different results folder used to
+# be PROJECT_ENV=atlas plus three ATLAS_* variables, which reads as "I am on
+# Atlas" when the real intent is "read the results in that folder". The
+# ATLAS_* names still work on the cluster; these take precedence when set.
+# ---------------------------------------------------------------------------
+DATA_DIR = Path(os.getenv("S1_DATA_DIR", DATA_DIR))
+WORK_DIR = Path(os.getenv("S1_WORK_DIR", WORK_DIR))
+ARTIFACT_DIR = Path(os.getenv("S1_ARTIFACT_DIR", ARTIFACT_DIR))
+
 # Creating these is best effort. On Atlas, /scratch exists only inside a batch
 # job, so importing this module on a login node cannot create it and must not
 # crash; the job script creates both before any Python runs.
@@ -88,8 +104,12 @@ def device():
 
 
 def banner() -> str:
+    overridden = [n for n in ("S1_DATA_DIR", "S1_WORK_DIR", "S1_ARTIFACT_DIR")
+                  if os.getenv(n)]
+    note = f"  (overridden by {', '.join(overridden)})\n" if overridden else ""
     return (
         f"PROJECT_ENV={ENVIRONMENT}\n"
+        f"{note}"
         f"  DATA_DIR     {DATA_DIR}\n"
         f"  WORK_DIR     {WORK_DIR}\n"
         f"  ARTIFACT_DIR {ARTIFACT_DIR}"

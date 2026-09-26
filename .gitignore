@@ -35,3 +35,7 @@ paper/*.out
 paper/*.fls
 paper/*.fdb_latexmk
 paper/*.synctex.gz
+
+# working copies of the manifests, committed as data/manifests/manifests.zip
+fold_manifest.csv
+dataset_manifest.csv

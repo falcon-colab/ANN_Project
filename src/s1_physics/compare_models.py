@@ -154,6 +154,151 @@ def measurement_recall(oof: dict) -> pd.DataFrame:
     return wide
 
 
+# ---------------------------------------------------------------------------
+# Paper-ready LaTeX. pandas .to_latex() is fine as a record but unusable in a
+# two-column IEEE paper: thirteen columns, six decimals and no booktabs. These
+# three writers emit exactly the tables the report includes with \\input, so no
+# number is ever retyped (project statement, instruction 13). Best value per
+# column is bolded automatically: max for macro-F1, accuracy and top-2, min for
+# ECE, Brier and the cost columns.
+# ---------------------------------------------------------------------------
+
+def _fmt(v, nd=4, bold=False) -> str:
+    if v is None or (isinstance(v, float) and np.isnan(v)):
+        return ""
+    txt = f"{v:.{nd}f}".lstrip("0") if isinstance(v, float) and abs(v) < 1 \
+        else (f"{v:.{nd}f}" if isinstance(v, float) else str(v))
+    return f"\\textbf{{{txt}}}" if bold else txt
+
+
+def _best(vals, lower_is_better=False):
+    vals = [v for v in vals if isinstance(v, float) and not np.isnan(v)]
+    if not vals:
+        return None
+    return min(vals) if lower_is_better else max(vals)
+
+
+def write_paper_main(t: pd.DataFrame, path: Path) -> None:
+    """Accuracy and calibration, five models, one column wide."""
+    body = t[t["model"] != "Majority baseline"]
+    best = {"macro_f1": _best(body["macro_f1"].tolist()),
+            "accuracy": _best(body["accuracy"].tolist()),
+            "ece": _best(body["ece"].tolist(), True),
+            "brier": _best(body["brier"].tolist(), True),
+            "top2": _best(body.get("top2", pd.Series(dtype=float)).tolist())}
+    lines = [r"\begin{table}[t]", r"\centering",
+             r"\caption{Clean accuracy and calibration, mean $\pm$ s.d. over "
+             r"five outer folds. Generated from the stored results by "
+             r"\texttt{compare\_models.py}.}",
+             r"\label{tab:main}", r"\footnotesize",
+             r"\setlength{\tabcolsep}{4pt}",
+             r"\begin{tabular}{lccccc}", r"\toprule",
+             r"Model & Macro-F1 & Acc. & ECE & Brier & Top-2 \\", r"\midrule"]
+    for _, r in t.iterrows():
+        cells = [r["model"]]
+        f1 = r.get("macro_f1")
+        sd = r.get("std")
+        f1txt = _fmt(f1, 4, f1 == best["macro_f1"])
+        if isinstance(sd, float) and not np.isnan(sd):
+            f1txt += r" $\pm$ " + _fmt(sd, 4)
+        cells.append(f1txt)
+        for col, low in (("accuracy", False), ("ece", True), ("brier", True),
+                         ("top2", False)):
+            v = r.get(col)
+            cells.append(_fmt(v, 4, v == best.get(col)))
+        lines.append(" & ".join(cells) + r" \\")
+    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    path.write_text("\n".join(lines) + "\n")
+
+
+def write_paper_folds(t: pd.DataFrame, oof: dict, path: Path) -> None:
+    """Per-fold macro-F1 beside per-class F1, one column wide."""
+    lines = [r"\begin{table}[t]", r"\centering",
+             r"\caption{Per-fold macro-F1 and pooled per-class F1. Generated "
+             r"from the stored results by \texttt{compare\_models.py}.}",
+             r"\label{tab:fold}", r"\footnotesize",
+             r"\setlength{\tabcolsep}{3pt}",
+             r"\begin{tabular}{lccccc|cccc}", r"\toprule",
+             r"& \multicolumn{5}{c|}{Outer fold} & \multicolumn{4}{c}{Class F1} \\",
+             r"Model & 0 & 1 & 2 & 3 & 4 & Dro. & Bird & Hum. & Refl. \\",
+             r"\midrule"]
+    for _, r in t.iterrows():
+        if str(r["model"]).startswith("mean"):
+            continue
+        key = next((k for k, v in DISPLAY.items() if v == r["model"]), None)
+        cells = [r["model"]] + [_fmt(r[f"fold{i}"], 3) for i in range(5)]
+        pc = per_class_f1(oof[key]) if key in oof else {}
+        for name in ("drone", "bird", "human", "reflector"):
+            cells.append(_fmt(pc.get(name), 3))
+        lines.append(" & ".join(cells) + r" \\")
+    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    path.write_text("\n".join(lines) + "\n")
+
+
+def write_paper_cost(summaries: dict, path: Path) -> None:
+    """Section 18 cost table, including the MLP latency from its own job."""
+    lat = {}
+    p = ARTIFACT_DIR / "results_mlp_latency.json"
+    if p.exists():
+        d = json.loads(p.read_text())
+        for dev, r in d.get("devices", {}).items():
+            lat[dev] = r
+    rows = []
+    for key in ORDER:
+        s = summaries.get(key)
+        if s is None:
+            continue
+        if key == "mlp":
+            size = f"{s.get('parameter_count', '')} weights"
+            for dev in ("cpu", "cuda"):
+                if dev in lat:
+                    rows.append((f"MLP, {dev.upper()}", size,
+                                 lat[dev]["mean_latency_ms"],
+                                 lat[dev]["p95_latency_ms"],
+                                 lat[dev].get("worst_repeat_spread_ms"),
+                                 s["wall_seconds"] / 60))
+            if not lat:
+                rows.append(("MLP", size, None, None, None,
+                             s["wall_seconds"] / 60))
+        else:
+            sv = [f.get("n_support_vectors") for f in s.get("per_fold", [])]
+            sv = [v for v in sv if v]
+            if sv:
+                size = f"{round(float(np.mean(sv))):,} SVs"
+            else:
+                # Depth, not tree count, drives inference cost, so name both.
+                sel = (s.get("selected_params_per_fold") or [{}])[0]
+                n_tree = sel.get("n_estimators", 500)
+                depth = sel.get("max_depth", None)
+                size = (f"{n_tree} trees, depth {depth}" if depth
+                        else f"{n_tree} trees, no cap")
+            rows.append((DISPLAY[key], size, s["mean_latency_ms"],
+                         s["p95_latency_ms"], s.get("latency_mean_spread_ms"),
+                         s["wall_seconds"] / 60))
+    rows.sort(key=lambda r: (r[2] is None, r[2] if r[2] is not None else 0))
+    fastest = _best([r[2] for r in rows], True)
+    quickest = _best([r[5] for r in rows], True)
+    lines = [r"\begin{table}[t]", r"\centering",
+             r"\caption{Computational cost, Section 18 items. Batch-one "
+             r"latency on one Argon node, 100 warm-up and 1,000 timed "
+             r"inferences, five repeats. Generated from the stored results by "
+             r"\texttt{compare\_models.py}.}",
+             r"\label{tab:cost}", r"\footnotesize",
+             r"\setlength{\tabcolsep}{2.5pt}",
+             r"\begin{tabular}{@{}llrrrr@{}}", r"\toprule",
+             r"Model & Size & Lat. & p95 & Spread & Train \\",
+             r" & & (ms) & (ms) & (ms) & (min) \\", r"\midrule"]
+    for name, size, mean, p95, spread, mins in rows:
+        lines.append(" & ".join([
+            name, size,
+            _fmt(mean, 3, mean == fastest),
+            _fmt(p95, 3),
+            _fmt(spread, 4),
+            _fmt(mins, 1, mins == quickest)]) + r" \\")
+    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    path.write_text("\n".join(lines) + "\n")
+
+
 def main() -> None:
     print(banner(), "\n")
     pd.set_option("display.width", 220, "display.max_columns", 60)
@@ -181,6 +326,12 @@ def main() -> None:
         folds_t.to_latex(index=False, escape=True,
                          caption="Macro-F1 per outer fold.",
                          label="tab:s1_folds"))
+
+    write_paper_main(main_t, ARTIFACT_DIR / "paper_table_main.tex")
+    write_paper_folds(folds_t, oof, ARTIFACT_DIR / "paper_table_folds.tex")
+    write_paper_cost(summaries, ARTIFACT_DIR / "paper_table_cost.tex")
+    print("\nWrote paper_table_main.tex, paper_table_folds.tex, "
+          "paper_table_cost.tex (these are what the report \\inputs)")
 
     if not keys:
         print("\nno out-of-fold predictions found; skipping failure analysis")

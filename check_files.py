@@ -69,7 +69,7 @@ CHECKS = {
         "measurement_recall",
         "paper tables plus consensus-failure analysis"),
     S1 / "run_robustness.py": (
-        "feature_stability",
+        ("feature_stability", "_load_predictor"),
         "nine Section 17 conditions, stability, clean vs corrupted importance"),
     S1 / "run_ablations.py": (
         ("subsample_measurements", "compact5_importance", "partial_run"),
@@ -80,6 +80,12 @@ CHECKS = {
     S1 / "llm_experiment.py": (
         "record_coverage",
         "model in filename, word count and record coverage, Wilson CIs"),
+    S1 / "make_reliability.py": (
+        "reliability_bins",
+        "15-bin reliability diagrams and pooled ECE from stored probabilities"),
+    S1 / "mlp_data_efficiency.py": (
+        ("subsample_measurements", "selected_params_per_fold"),
+        "MLP data-efficiency curve reusing the per-fold selected configuration"),
     S1 / "measure_mlp_latency.py": (
         "torch.cuda.synchronize",
         "batch-one MLP latency from the saved checkpoints"),
