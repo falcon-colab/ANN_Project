@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Computational cost, Section 18 items. Batch-one latency on one Argon node, 100 warm-up and 1,000 timed inferences, five repeats. Generated from the stored results by \texttt{compare\_models.py}.}
+\label{tab:cost}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Size & Lat. & p95 & Spread & Train \\
+ & & (ms) & (ms) & (ms) & (min) \\
+\midrule
+MLP, CPU & 3108 weights & \textbf{.023} & .024 & .0002 & 49.8 \\
+MLP, CUDA & 3108 weights & .056 & .057 & .0005 & 49.8 \\
+XGBoost & 500 trees, depth 6 & .145 & .153 & .0015 & \textbf{1.5} \\
+RBF-SVM & 7,333 SVs & .388 & .402 & .0028 & 9.2 \\
+Random Forest & 500 trees, no cap & 10.235 & 10.423 & .0441 & 21.1 \\
+\bottomrule
+\end{tabular}
+\end{table}

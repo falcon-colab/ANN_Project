@@ -9,10 +9,10 @@ Branch: `student/s1-physics`. Student: Ghulam Mustafa (S1).
 
 Ten handcrafted descriptors are computed per 15 ms radar segment from raw I/Q,
 then compared across an RBF-SVM, Random Forest, XGBoost and a small MLP under
-one frozen cross-validation protocol, with calibration, ablation, importance,
-data-efficiency and robustness analyses. A separate sub-study asks whether an
-LLM can summarise the resulting numbers without inventing or misreporting
-them, checked by a deterministic verifier.
+one frozen cross-validation protocol, with calibration, confidence, ablation,
+importance, data-efficiency and robustness analyses. A separate sub-study asks
+whether an LLM can summarise the resulting numbers without inventing or
+misreporting them, checked by a deterministic verifier.
 
 ## Dataset
 
@@ -55,57 +55,92 @@ to raw radar data. The deviations are listed in the report.
 ## Reproducing, in order
 
 ```bash
+python check_files.py                      # run this first, see below
+
 python convert_dataset.py --source <zenodo master .npy>
 python src/common/generate_manifest.py     # ONCE. Already frozen; do not re-run.
 python src/common/preprocess_iq.py         # writes the power memmap
 python src/s1_physics/feature_extractor.py # writes s1_features.csv
 python src/s1_physics/validate_features.py # numerical gate, must pass
+
 python src/s1_physics/train_classical.py --models svm rf xgb --latency-repeats 5
 python src/s1_physics/train_mlp.py --demo overfit
 python src/s1_physics/train_mlp.py --demo repro
 python src/s1_physics/train_mlp.py
 python src/s1_physics/measure_mlp_latency.py --also-cpu
+
 python src/s1_physics/run_ablations.py --models svm xgb rf
-python src/s1_physics/run_robustness.py --models svm xgb rf
+python src/s1_physics/run_robustness.py --models svm xgb rf mlp
+python src/s1_physics/mlp_data_efficiency.py
+python src/s1_physics/make_reliability.py
+
 python src/s1_physics/analyze_results.py
 python src/s1_physics/compare_models.py    # exports the paper tables
+
 python src/s1_physics/llm_experiment.py --provider ollama --model llama3.2:3b
-pytest src/s1_physics/test_llm_verify.py -q
+pytest src/s1_physics/test_llm_verify.py -q # 27 tests, 26 run and 1 skipped
 ```
 
-`python check_files.py` verifies that all 18 scripts are the current revision
-before any run whose numbers reach the paper. Run it first. It tests several
-marker strings per file, including the command-line flags the Atlas job scripts
-pass, because a single marker once let a stale `train_classical.py` pass as
-current and the batch job died 19 seconds in.
+`python check_files.py` verifies that all 20 scripts are the current revision
+before any run whose numbers reach the paper. It tests several marker strings
+per file, including the command-line flags the Atlas job scripts pass, because
+a single marker once let a stale `train_classical.py` pass as current and the
+batch job died 19 seconds in.
 
-On Atlas set `PROJECT_ENV=atlas`; paths then come from `ATLAS_DATA_DIR`,
-`ATLAS_WORK_DIR` and `ATLAS_ARTIFACT_DIR` (see `src/common/config.py`). The job
-scripts in `atlas/` do this for you.
+### Paths and environments
+
+`src/common/config.py` resolves every path. Local runs need nothing set. On
+Atlas set `PROJECT_ENV=atlas`, and paths then come from `ATLAS_DATA_DIR`,
+`ATLAS_WORK_DIR` and `ATLAS_ARTIFACT_DIR`; the job scripts in `atlas/` do this
+for you.
+
+`S1_DATA_DIR`, `S1_WORK_DIR` and `S1_ARTIFACT_DIR` override any of the three in
+**either** environment. They exist so that a local machine can re-analyse the
+Atlas results without pretending to be Atlas, which is how the reliability
+diagrams, the MLP robustness run and the MLP data-efficiency curve were
+produced after the cluster jobs finished:
+
+```powershell
+$env:S1_ARTIFACT_DIR = "C:\Projects\ANN_Project\results\atlas"
+$env:S1_DATA_DIR     = "C:\Projects\ANN_Project\artifacts\work\zenodo"
+```
+
+The banner every script prints names which variable is in force, so a run
+cannot quietly read the wrong directory.
 
 ## Layout
 
 ```
 src/common/        config, manifest generation, preprocessing, corruption, metrics
 src/s1_physics/    features, training, analysis, ablations, robustness, LLM study
-atlas/             the five SLURM job scripts that produced the reported numbers
+atlas/             the SLURM job scripts that produced the reported numbers
 results/atlas/     RESULTS OF RECORD: jobs 2305, 2308, 2309 on argon01
 results/local_dev/ the local development run, kept for the reproduction claim
 results/notes/     small evidence files
 data/manifests/    manifests.zip (both manifests) plus the sha256 files
 logs/              Atlas job logs, including the failed job 2238
 tools/             one-off inspection helper
-paper/             the report source
+paper/             the report source, its figures and its generated tables
 ```
 
 Results of record are `results/atlas/`. The local run is kept because the two
 together are the evidence for the reproducibility finding below.
 
+`paper/s1_draft_report.tex` is IEEE two-column and fits the 10-page limit
+including references. It expects `IEEEtran.cls`, so build it on Overleaf or on
+any TeX installation that has the IEEE class. `paper/tables/*.tex` are written
+by `compare_models.py` from the stored result files and are included verbatim,
+never retyped. `paper/figures/reliability.pdf` is written by
+`make_reliability.py`.
+
 Not in git, and regenerable: the raw measurements, the power memmap,
 `s1_features.csv`, the out-of-fold probability files, and the Random Forest and
 XGBoost model files (a 500-tree uncapped forest serialises to about 280 MB per
 fold). The five MLP checkpoints are kept, since they are 20 KB each and make
-the latency measurement repeatable.
+the latency measurement repeatable. `reliability_bins.csv` is kept for the same
+reason: the out-of-fold probabilities it was computed from are too large to
+commit, so the binned numbers behind the figure stay in the repository even
+though their input does not.
 
 ## Headline results, from `results/atlas/`
 
@@ -117,7 +152,7 @@ the latency measurement repeatable.
 | Random Forest | 0.8353 +/- 0.0396 | 0.9181 | **0.0213** | 0.1249 | 10.235 ms | 21m 06s |
 | MLP (3,108 params) | 0.8294 +/- 0.0319 | 0.9106 | 0.0260 | 0.1332 | **0.023 ms** CPU, 0.056 ms GPU | 49m 48s |
 
-Five findings worth reading the report for:
+Six findings worth reading the report for:
 
 1. **The MLP does not beat the classical learners.** It is last on macro-F1 and
    on Brier score, at the highest training cost, and it is the cheapest model
@@ -126,14 +161,21 @@ Five findings worth reading the report for:
    the lowest ECE, XGBoost the best Brier score and by far the best
    high-confidence operating point (65% of segments at p >= 0.99 with 98.87%
    accuracy, against 3.5% for the SVM).
-3. **Intermediate noise is worse than total noise.** At -10 dB the tree models
+3. **A calibration number has to say how folds were combined.** Averaging ECE
+   over folds gives 0.0281, 0.0258, 0.0213 and 0.0260 for SVM, XGBoost, Random
+   Forest and MLP, while pooling all out-of-fold predictions into one set of
+   bins gives 0.0241, 0.0212, 0.0157 and 0.0118. Both agree that the SVM is
+   worst, but the MLP moves from third to first.
+4. **Intermediate noise is worse than total noise.** At -10 dB the tree models
    sit at the majority baseline; at 0 dB they fall to 0.09, well below it,
-   because shifted-but-informative features produce confident errors.
-4. **Reproducibility is a property of a machine, not of a seed.** The three
+   because shifted-but-informative features produce confident errors. The SVM
+   and the MLP never cross the baseline.
+5. **Reproducibility is a property of a machine, not of a seed.** The three
    classical models reproduce to four decimal places across two machines and
    two scikit-learn versions; the MLP does not.
-5. **The verifier needed its own validation.** Six bugs in the LLM claim
-   checker each changed a reported rate, three of them false negatives.
+6. **The verifier needed its own validation.** Seven bugs were found in the LLM
+   claim checker, six of which each changed a reported rate, three of those
+   being false negatives.
 
 ## Deviations, limitations, known gaps
 
@@ -151,8 +193,13 @@ Documented in the report, and summarised here so nobody has to guess:
   construction, since blur is applied to the power spectrum while they are
   computed from the I/Q.
 - Local environment scikit-learn 1.9.0 and torch 2.13.0; Atlas 1.8.0 and
-  2.5.1.
-- Not run: MLP robustness, and the MLP data-efficiency curve.
+  2.5.1. The MLP's cross-machine difference therefore has two possible causes,
+  device and library version, which one run each cannot separate.
+- The MLP robustness and data-efficiency curves were produced on the
+  development machine, not on Atlas, because each point needs its own training
+  run. The 100% point agrees with the full nested run to 0.008.
+- Still open: a compact five-feature subset chosen without touching the outer
+  folds, and feature distribution and correlation figures for the report.
 
 ## Supervisors
 

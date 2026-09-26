@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Per-fold macro-F1 and pooled per-class F1. Generated from the stored results by \texttt{compare\_models.py}.}
+\label{tab:fold}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccc|cccc}
+\toprule
+& \multicolumn{5}{c|}{Outer fold} & \multicolumn{4}{c}{Class F1} \\
+Model & 0 & 1 & 2 & 3 & 4 & Dro. & Bird & Hum. & Refl. \\
+\midrule
+RBF-SVM & .831 & .882 & .904 & .890 & .879 & .969 & .792 & .833 & .920 \\
+XGBoost & .797 & .903 & .867 & .890 & .856 & .964 & .780 & .818 & .888 \\
+Random Forest & .761 & .861 & .832 & .874 & .850 & .955 & .752 & .797 & .842 \\
+MLP & .770 & .864 & .827 & .842 & .844 & .951 & .710 & .801 & .849 \\
+\bottomrule
+\end{tabular}
+\end{table}
