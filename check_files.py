@@ -92,6 +92,9 @@ CHECKS = {
     S1 / "test_llm_verify.py": (
         "OLLAMA_RUN1",
         "27 tests including seven real-output regressions"),
+    S1 / "verify_paper_numbers.py": (
+        ("CLAIMS", "DERIVED", "pooled_ece"),
+        "checks every reported number against its stored result file"),
 }
 
 
